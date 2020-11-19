@@ -242,6 +242,11 @@ public class GreetingController {
             String timezone = JSONObject_openWeatherAPIResponse.getString("timezone");
             int timezone_offset = JSONObject_openWeatherAPIResponse.getInt("timezone_offset");
 
+
+
+            //* TEMP
+            timezone_offset = 0;
+
             /* MAHNAZ'S VERSION
             // "coord"
             JSONObject JSONObject_coord = jsonObject.getJSONObject("coord");
@@ -267,14 +272,17 @@ public class GreetingController {
             int current_dt_adjusted = current_dt + timezone_offset;
             String current_dt_adjusted_daydate = getDayDate(current_dt_adjusted);
             String current_dt_adjusted_hour = getHour(current_dt_adjusted);
+
             int current_sunrise = JSONObject_current.getInt("sunrise");
             int current_sunrise_adjusted = current_sunrise + timezone_offset;
             String current_sunrise_adjusted_daydate = getDayDate(current_sunrise_adjusted);
             String current_sunrise_adjusted_hour = getHour(current_sunrise_adjusted);
+
             int current_sunset = JSONObject_current.getInt("sunset");
             int current_sunset_adjusted = current_sunset + timezone_offset;
             String current_sunset_adjusted_daydate = getDayDate(current_sunset_adjusted);
             String current_sunset_adjusted_hour = getHour(current_sunset_adjusted);
+
             int current_temp = (int) JSONObject_current.getDouble("temp");
             int current_feels_like = (int) JSONObject_current.getDouble("feels_like");
             int current_pressure = JSONObject_current.getInt("pressure");
@@ -333,6 +341,7 @@ public class GreetingController {
             int[] hourly_dt_adjusted = new int[numOfHours];
             String[] hourly_dt_adjusted_daydate = new String[numOfHours];
             String[] hourly_dt_adjusted_hour = new String[numOfHours];
+
             int[] hourly_temp = new int[numOfHours];
             int[] hourly_feels_like = new int[numOfHours];
             int[] hourly_pressure = new int[numOfHours];
@@ -1307,16 +1316,23 @@ public class GreetingController {
 
             int current_dt = JSONObject_current.getInt("dt");
             int current_dt_adjusted = current_dt + timezone_offset;
+
+            int dumb_current_dt_adjusted = current_dt_adjusted + 18000;
+            String dumb_current_dt_adjusted_hour = getHour(dumb_current_dt_adjusted);
+
             String current_dt_adjusted_daydate = getDayDate(current_dt_adjusted);
             String current_dt_adjusted_hour = getHour(current_dt_adjusted);
+
             int current_sunrise = JSONObject_current.getInt("sunrise");
             int current_sunrise_adjusted = current_sunrise + timezone_offset;
             String current_sunrise_adjusted_daydate = getDayDate(current_sunrise_adjusted);
             String current_sunrise_adjusted_hour = getHour(current_sunrise_adjusted);
+
             int current_sunset = JSONObject_current.getInt("sunset");
             int current_sunset_adjusted = current_sunset + timezone_offset;
             String current_sunset_adjusted_daydate = getDayDate(current_sunset_adjusted);
             String current_sunset_adjusted_hour = getHour(current_sunset_adjusted);
+
             int current_temp = (int) JSONObject_current.getDouble("temp");
             int current_feels_like = (int) JSONObject_current.getDouble("feels_like");
             int current_pressure = JSONObject_current.getInt("pressure");
@@ -1560,6 +1576,8 @@ public class GreetingController {
             returnPage.addObject("current_dt_adjusted", current_dt_adjusted);
             returnPage.addObject("current_dt_adjusted_daydate", current_dt_adjusted_daydate);
             returnPage.addObject("current_dt_adjusted_hour", current_dt_adjusted_hour);
+
+            returnPage.addObject("dumb_current_dt_adjusted_hour", dumb_current_dt_adjusted_hour);
 
             returnPage.addObject("current_sunrise", current_sunrise);
             returnPage.addObject("current_sunrise_adjusted", current_sunrise_adjusted);
