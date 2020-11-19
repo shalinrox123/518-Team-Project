@@ -201,7 +201,7 @@ function displaySelected()
     var country = document.getElementById("countrySelect").value;
     var city = document.getElementById("citySelect").value;
     document.getElementById("demo").innerHTML = city;
-    location.href = "/location/cityName/" + city;
+    location.href = "/location3/cityName/" + city;
 }
 
 function makeStates()

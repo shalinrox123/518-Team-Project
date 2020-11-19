@@ -19,12 +19,13 @@ var randomStrings = [
     "Misty is a character in Pokemon!"
 ];
 
-var randomDiv = document.getElementById("myRandomDiv");
+var randomDiv = document.getElementById("texty-text");
 
-document.getElementById("myButton").addEventListener("click", generate);
+document.getElementById("button1").addEventListener("click", generate);
 
 function generate() {
-    randomIndex = Math.ceil((Math.random() * randomStrings.length - 1));
+    var x = Math.floor((Math.random() * 17) + 1);
+    randomIndex = x;//Math.ceil((Math.random() * randomStrings.length - 1));
     newText = randomStrings[randomIndex];
     randomDiv.innerHTML = newText;
 }

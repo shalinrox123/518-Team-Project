@@ -102,8 +102,8 @@ public class GreetingController {
     }
 
 
-    @ResponseBody
-    @RequestMapping("/location/cityName/{CITYNAME}")
+    //@ResponseBody
+    @GetMapping("/location3/cityName/{CITYNAME}")
     public String get_cityLocation(@PathVariable String CITYNAME) throws ParseException {
         //https://api.opencagedata.com/geocode/v1/json?q=Albany&key=17f20d72d5f6410b8f89d59f0afbb590&pretty=1
         String API_KEY = "17f20d72d5f6410b8f89d59f0afbb590";
@@ -132,15 +132,27 @@ public class GreetingController {
 
             JSONObject jsonObject = new JSONObject(json);
 
-            // "lag long"
-            String result_latlong;
-            JSONArray JSONArray_weather = jsonObject.getJSONArray("geometry");
-            if (JSONArray_weather.length() > 0) {
-                JSONObject JSONObject_weather = JSONArray_weather.getJSONObject(0);
-                double lat = JSONObject_weather.getDouble("lat");
-                double lng = JSONObject_weather.getDouble("long");
+            JSONArray jsonArrayResults = jsonObject.getJSONArray("results");
 
-                result_latlong = "lat: " + lat + " long: " + lng;
+            System.out.println(jsonArrayResults);
+
+            JSONObject tempObj = jsonArrayResults.getJSONObject(0);
+
+            System.out.println(tempObj);
+
+            JSONObject geometryObj = tempObj.getJSONObject("geometry");
+
+            System.out.println(geometryObj);
+
+            // "lat long"
+            String result_latlong;
+            //JSONObject JSONObject_geometry = jsonArrayResults.getJSONObject("geometry");
+            if (true) {
+                //JSONObject JSONObject_weather = tempObj.getJSONObject();
+                double lat = geometryObj.getDouble("lat");
+                double lng = geometryObj.getDouble("lng");
+
+                result_latlong = "/location/" + lat + "," + lng;
                 temp = result_latlong;
             } else {
                 result_latlong = "City not found";
