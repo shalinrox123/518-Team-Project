@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Weather Website</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Liquid.css">
+    <link rel="stylesheet" href="/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/css/Accordion.css">
+    <link rel="stylesheet" href="/css/odometer-theme-digital.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+<nav class="navbar navbar-dark navbar-expand-md bg-info shadow">
+    <div class="container"><a class="navbar-brand" href="#">Whether?</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+             id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link active" href="#">Log In&nbsp;<i class="fa fa-arrow-circle-o-right"></i></a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Register</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center" th:text="${dumb_current_dt_adjusted_hour}"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-center">Location: Detected!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4"><img class="img-fluid" src="/img/Screen%20Shot%202020-11-17%20at%204.36.23%20PM.png"></div>
+        <div class="col-4">
+            <h1 class="text-center" id="city-name-header-title" style="text-shadow: 12px 0px 2px rgb(205,215,225);">Albany</h1>
+            <p class="text-center" style="font-size: 14px;line-height: 21px;height: 20px;"><a id="not-your-location-link" href="#">Not your location? Click here.</a></p>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col-4">
+                    <p class="mt-1" style="font-size: 15px;line-height: 23px;border-width: 0px;">Temperature</p>
+                    <p style="font-size: 15px;line-height: 23px;">Feels Like</p>
+                    <p style="font-size: 15px;line-height: 23px;width: 93px;padding: 0px;">Rain Chance</p>
+                    <p style="padding: 0px;font-size: 15px;line-height: 23px;width: 93px;">Rel. Humidity</p>
+                    <p style="padding: 0px;font-size: 15px;line-height: 23px;width: 93px;">Wind Speed</p>
+                </div>
+                <div class="col-8">
+                    <div class="progress" style="padding: 0px;margin: 12px;height: 24px;">
+                        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%;">43%</div>
+                    </div>
+                    <div class="progress" style="padding: 0px;margin: 12px;height: 24px;">
+                        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">30%</div>
+                    </div>
+                    <div class="progress" style="padding: 0px;margin: 12px;height: 24px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100" style="width: 41%;">41%</div>
+                    </div>
+                    <div class="progress" style="padding: 0px;margin: 12px;height: 24px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%;">72%</div>
+                    </div>
+                    <div class="progress" style="padding: 0px;margin: 12px;height: 24px;">
+                        <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">10%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col"><a th:href="@{index2}"><img src="/img/crystal-ball-300x300.gif"></a></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

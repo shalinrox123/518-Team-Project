@@ -1,0 +1,7 @@
+@font-face {
+	font-family: 'Liquid';
+	src: url(../../assets/fonts/Liquid-Italic.woff2) format('woff2'),
+	url(../../assets/fonts/Liquid-Italic.woff) format('woff');
+	font-weight: normal;
+	font-style: italic;
+}
