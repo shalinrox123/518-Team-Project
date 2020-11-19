@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class GreetingController {
 
-
+    /*
     public String unixToNormal(long unixSeconds)
     {
         // convert seconds to milliseconds
@@ -39,6 +39,25 @@ public class GreetingController {
         System.out.println(formattedDate);
 
         return formattedDate;
+    }
+     */
+
+    // Time formatting functions
+
+    public static String getDayDate(int unixSeconds){
+
+        Date date = new java.util.Date(unixSeconds*1000L);
+        SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMM-dd EEEE");
+        String newFormat = sdf.format(date);
+        return newFormat;
+    }
+
+    public static String getHour(int unixSeconds){
+
+        Date date = new java.util.Date(unixSeconds*1000L);
+        SimpleDateFormat sdf = new java.text.SimpleDateFormat("hh:mm aa");
+        String newFormat = sdf.format(date);
+        return newFormat;
     }
 
 
@@ -246,19 +265,25 @@ public class GreetingController {
 
             int current_dt = JSONObject_current.getInt("dt");
             int current_dt_adjusted = current_dt + timezone_offset;
+            String current_dt_adjusted_daydate = getDayDate(current_dt_adjusted);
+            String current_dt_adjusted_hour = getHour(current_dt_adjusted);
             int current_sunrise = JSONObject_current.getInt("sunrise");
             int current_sunrise_adjusted = current_sunrise + timezone_offset;
+            String current_sunrise_adjusted_daydate = getDayDate(current_sunrise_adjusted);
+            String current_sunrise_adjusted_hour = getHour(current_sunrise_adjusted);
             int current_sunset = JSONObject_current.getInt("sunset");
             int current_sunset_adjusted = current_sunset + timezone_offset;
-            double current_temp = JSONObject_current.getDouble("temp");
-            double current_feels_like = JSONObject_current.getDouble("feels_like");
+            String current_sunset_adjusted_daydate = getDayDate(current_sunset_adjusted);
+            String current_sunset_adjusted_hour = getHour(current_sunset_adjusted);
+            int current_temp = (int) JSONObject_current.getDouble("temp");
+            int current_feels_like = (int) JSONObject_current.getDouble("feels_like");
             int current_pressure = JSONObject_current.getInt("pressure");
             int current_humidity = JSONObject_current.getInt("humidity");
-            double current_dew_point = JSONObject_current.getDouble("dew_point");
-            double current_uvi = JSONObject_current.getDouble("uvi");
+            int current_dew_point = (int) JSONObject_current.getDouble("dew_point");
+            int current_uvi = (int) JSONObject_current.getDouble("uvi");
             int current_clouds = JSONObject_current.getInt("clouds");
             int current_visibility = JSONObject_current.getInt("visibility");
-            double current_wind_speed = JSONObject_current.getDouble("wind_speed");
+            int current_wind_speed = (int) JSONObject_current.getDouble("wind_speed");
             int current_wind_deg = JSONObject_current.getInt("wind_deg");
 
 
@@ -306,14 +331,16 @@ public class GreetingController {
 
             int[] hourly_dt = new int[numOfHours];
             int[] hourly_dt_adjusted = new int[numOfHours];
-            double[] hourly_temp = new double[numOfHours];
-            double[] hourly_feels_like = new double[numOfHours];
+            String[] hourly_dt_adjusted_daydate = new String[numOfHours];
+            String[] hourly_dt_adjusted_hour = new String[numOfHours];
+            int[] hourly_temp = new int[numOfHours];
+            int[] hourly_feels_like = new int[numOfHours];
             int[] hourly_pressure = new int[numOfHours];
             int[] hourly_humidity = new int[numOfHours];
-            double[] hourly_dew_point = new double[numOfHours];
+            int[] hourly_dew_point = new int[numOfHours];
             int[] hourly_clouds = new int[numOfHours];
             int[] hourly_visibility = new int[numOfHours];
-            double[] hourly_wind_speed = new double[numOfHours];
+            int[] hourly_wind_speed = new int[numOfHours];
             int[] hourly_wind_deg = new int[numOfHours];
 
             int[] hourly_weather_id = new int[numOfHours];
@@ -322,6 +349,7 @@ public class GreetingController {
             String[] hourly_weather_icon = new String[numOfHours];
 
             double[] hourly_pop = new double[numOfHours];
+            int[] hourly_pop_adjusted = new int[numOfHours];
 
             // ten hours will be enough
             for (int i = 0; i < numOfHours; i++)
@@ -329,16 +357,21 @@ public class GreetingController {
                 hourly_dt[i] = JSONArray_hourly.getJSONObject(i).getInt("dt");
                 // convert to local time
                 hourly_dt_adjusted[i] = hourly_dt[i] + timezone_offset;
-                hourly_temp[i] = JSONArray_hourly.getJSONObject(i).getDouble("temp");
-                hourly_feels_like[i] = JSONArray_hourly.getJSONObject(i).getDouble("feels_like");
+                hourly_dt_adjusted_daydate[i] = getDayDate(hourly_dt_adjusted[i]);
+                hourly_dt_adjusted_hour[i] = getHour(hourly_dt_adjusted[i]);
+
+                hourly_temp[i] = (int) JSONArray_hourly.getJSONObject(i).getDouble("temp");
+                hourly_feels_like[i] = (int) JSONArray_hourly.getJSONObject(i).getDouble("feels_like");
                 hourly_pressure[i] = JSONArray_hourly.getJSONObject(i).getInt("pressure");
                 hourly_humidity[i] = JSONArray_hourly.getJSONObject(i).getInt("humidity");
-                hourly_dew_point[i] = JSONArray_hourly.getJSONObject(i).getDouble("dew_point");
+                hourly_dew_point[i] = (int) JSONArray_hourly.getJSONObject(i).getDouble("dew_point");
                 hourly_clouds[i] = JSONArray_hourly.getJSONObject(i).getInt("clouds");
                 hourly_visibility[i] = JSONArray_hourly.getJSONObject(i).getInt("visibility");
-                hourly_wind_speed[i] = JSONArray_hourly.getJSONObject(i).getDouble("wind_speed");
+                hourly_wind_speed[i] = (int) JSONArray_hourly.getJSONObject(i).getDouble("wind_speed");
                 hourly_wind_deg[i] = JSONArray_hourly.getJSONObject(i).getInt("wind_deg");
                 hourly_pop[i] = JSONArray_hourly.getJSONObject(i).getDouble("pop");
+                // convert pop to percentage
+                hourly_pop_adjusted[i] = (int) (hourly_pop[i] * 100);
 
                 // I think these next four lines are right but if there's an error check these
                 hourly_weather_id[i] = JSONArray_hourly.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getInt("id");
@@ -366,27 +399,34 @@ public class GreetingController {
 
             int[] daily_dt = new int[numOfDays];
             int[] daily_dt_adjusted = new int[numOfDays];
+            String[] daily_dt_adjusted_daydate = new String[numOfDays];
+            String[] daily_dt_adjusted_hour = new String[numOfDays];
             int[] daily_sunrise = new int[numOfDays];
             int[] daily_sunrise_adjusted = new int[numOfDays];
+            String[] daily_sunrise_adjusted_daydate = new String[numOfDays];
+            String[] daily_sunrise_adjusted_hour = new String[numOfDays];
             int[] daily_sunset = new int[numOfDays];
             int[] daily_sunset_adjusted = new int[numOfDays];
+            String[] daily_sunset_adjusted_daydate = new String[numOfDays];
+            String[] daily_sunset_adjusted_hour = new String[numOfDays];
 
-            double[] daily_temp_day = new double[numOfDays];
-            double[] daily_temp_min = new double[numOfDays];
-            double[] daily_temp_max = new double[numOfDays];
-            double[] daily_temp_night = new double[numOfDays];
-            double[] daily_temp_eve = new double[numOfDays];
-            double[] daily_temp_morn = new double[numOfDays];
 
-            double[] daily_feels_like_day = new double[numOfDays];
-            double[] daily_feels_like_night = new double[numOfDays];
-            double[] daily_feels_like_eve = new double[numOfDays];
-            double[] daily_feels_like_morn = new double[numOfDays];
+            int[] daily_temp_day = new int[numOfDays];
+            int[] daily_temp_min = new int[numOfDays];
+            int[] daily_temp_max = new int[numOfDays];
+            int[] daily_temp_night = new int[numOfDays];
+            int[] daily_temp_eve = new int[numOfDays];
+            int[] daily_temp_morn = new int[numOfDays];
+
+            int[] daily_feels_like_day = new int[numOfDays];
+            int[] daily_feels_like_night = new int[numOfDays];
+            int[] daily_feels_like_eve = new int[numOfDays];
+            int[] daily_feels_like_morn = new int[numOfDays];
 
             int[] daily_pressure = new int[numOfDays];
             int[] daily_humidity = new int[numOfDays];
-            double[] daily_dew_point = new double[numOfDays];
-            double[] daily_wind_speed = new double[numOfDays];
+            int[] daily_dew_point = new int[numOfDays];
+            int[] daily_wind_speed = new int[numOfDays];
             int[] daily_wind_deg = new int[numOfDays];
 
             int[] daily_weather_id = new int[numOfDays];
@@ -396,8 +436,9 @@ public class GreetingController {
 
             int[] daily_clouds = new int[numOfDays];
             double[] daily_pop = new double[numOfDays]; // *********
+            int[] daily_pop_adjusted = new int[numOfDays];
             double[] daily_rain = new double[numOfDays];
-            double[] daily_uvi = new double[numOfDays];
+            int[] daily_uvi = new int[numOfDays];
 
 
 
@@ -406,29 +447,37 @@ public class GreetingController {
             {
                 daily_dt[i] = JSONArray_daily.getJSONObject(i).getInt("dt");
                 daily_dt_adjusted[i] = daily_dt[i] + timezone_offset;
+                daily_dt_adjusted_hour[i] = getHour(daily_dt_adjusted[i]);
+                daily_dt_adjusted_daydate[i] = getDayDate(daily_dt_adjusted[i]);
+
                 daily_sunrise[i] = JSONArray_daily.getJSONObject(i).getInt("sunrise");
                 daily_sunrise_adjusted[i] = daily_sunrise[i] + timezone_offset;
+                daily_sunrise_adjusted_hour[i] = getHour(daily_sunrise_adjusted[i]);
+                daily_sunrise_adjusted_daydate[i] = getDayDate(daily_sunrise_adjusted[i]);
+
                 daily_sunset[i] = JSONArray_daily.getJSONObject(i).getInt("sunset");
                 daily_sunset_adjusted[i] = daily_sunset[i] + timezone_offset;
+                daily_sunset_adjusted_hour[i] = getHour(daily_sunset_adjusted[i]);
+                daily_sunset_adjusted_daydate[i] = getDayDate(daily_sunset_adjusted[i]);
 
-                daily_temp_day[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("day");
-                daily_temp_min[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("min");
-                daily_temp_max[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("max");
-                daily_temp_night[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("night");
-                daily_temp_eve[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("eve");
-                daily_temp_morn[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("morn");
+                daily_temp_day[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("day");
+                daily_temp_min[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("min");
+                daily_temp_max[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("max");
+                daily_temp_night[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("night");
+                daily_temp_eve[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("eve");
+                daily_temp_morn[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("morn");
 
 
-                daily_feels_like_day[i] = JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("day");
-                daily_feels_like_night[i] = JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("night");
-                daily_feels_like_eve[i] = JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("eve");
-                daily_feels_like_morn[i] = JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("morn");
+                daily_feels_like_day[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("day");
+                daily_feels_like_night[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("night");
+                daily_feels_like_eve[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("eve");
+                daily_feels_like_morn[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("morn");
 
 
                 daily_pressure[i] = JSONArray_daily.getJSONObject(i).getInt("pressure");
                 daily_humidity[i] = JSONArray_daily.getJSONObject(i).getInt("humidity");
-                daily_dew_point[i] = JSONArray_daily.getJSONObject(i).getDouble("dew_point");
-                daily_wind_speed[i] = JSONArray_daily.getJSONObject(i).getDouble("wind_speed");
+                daily_dew_point[i] = (int) JSONArray_daily.getJSONObject(i).getDouble("dew_point");
+                daily_wind_speed[i] = (int) JSONArray_daily.getJSONObject(i).getDouble("wind_speed");
                 daily_wind_deg[i] = JSONArray_daily.getJSONObject(i).getInt("wind_deg");
 
 
@@ -440,141 +489,13 @@ public class GreetingController {
 
                 daily_clouds[i] = JSONArray_daily.getJSONObject(i).getInt("clouds");
                 daily_pop[i] = JSONArray_daily.getJSONObject(i).getDouble("pop");
+                // convert to percentages
+                daily_pop_adjusted[i] = (int) (daily_pop[i] * 100);
                 //daily_rain[i] = JSONArray_daily.getJSONObject(i).getDouble("rain");
-                daily_uvi[i] = JSONArray_daily.getJSONObject(i).getDouble("uvi");
+                daily_uvi[i] = (int) JSONArray_daily.getJSONObject(i).getDouble("uvi");
             }
 
 
-
-            /* MAHNAZ'S VERSION
-            // "weather"
-            String result_weather;
-            JSONArray JSONArray_weather = jsonObject.getJSONArray("weather");
-            if (JSONArray_weather.length() > 0) {
-                JSONObject JSONObject_weather = JSONArray_weather.getJSONObject(0);
-                int result_id = JSONObject_weather.getInt("id");
-                String result_main = JSONObject_weather.getString("main");
-                String result_description = JSONObject_weather.getString("description");
-                String result_icon = JSONObject_weather.getString("icon");
-
-                result_weather = "weather\tid: " + result_id + "\tmain: " + result_main + "\tdescription: "
-                        + result_description + "\ticon: " + result_icon;
-            } else {
-                result_weather = "weather empty!";
-            }
-            */ // MAHNAZ'S VERSION
-
-
-            /* // SHOULD BE COMMENTED OUT ALWAYS
-            int minutelyDt[];
-            double minutelyPrecipitation[];
-
-            int hourlyDt[];
-            double hourlyTemp[];
-            double hourlyFeels_like[];
-            int hourlyPressure[];
-            int hourlyHumidity[];
-            double hourlyDew_point[];
-            int hourlyClouds[];
-            int hourlyVisibility[];
-            */
-
-
-            /*
-            // "weather" in "current"
-            String weatherString;
-            JSONArray JSONArray_weather = JSONObject_current.getJSONArray("weather");
-            if (JSONArray_weather.length() > 0) {
-                JSONObject JSONObject_weather = JSONArray_weather.getJSONObject(0);
-                int weather_id = JSONObject_weather.getInt("id");
-                String weather_main = JSONObject_weather.getString("main");
-                String weather_description = JSONObject_weather.getString("description");
-                String weather_icon = JSONObject_weather.getString("icon");
-
-                weatherString = "weather\tid: " + weather_id + "\tmain: " + weather_main + "\tdescription: "
-                        + weather_description + "\ticon: " + weather_icon;
-
-            } else {
-                weatherString = "weather empty!";
-            }
-            */
-
-
-            /*
-            // "sys"
-            JSONObject JSONObject_sys = jsonObject.getJSONObject("sys");
-            String result_country = JSONObject_sys.getString("country");
-            int result_sunrise = JSONObject_sys.getInt("sunrise");
-            int result_sunset = JSONObject_sys.getInt("sunset");
-
-
-
-
-
-            // "base"
-            String result_base = jsonObject.getString("base");
-
-            // "main"
-            JSONObject JSONObject_main = jsonObject.getJSONObject("main");
-            Double result_temp = JSONObject_main.getDouble("temp");
-            Double result_pressure = JSONObject_main.getDouble("pressure");
-            Double result_humidity = JSONObject_main.getDouble("humidity");
-            Double result_temp_min = JSONObject_main.getDouble("temp_min");
-            Double result_temp_max = JSONObject_main.getDouble("temp_max");
-
-            // "wind"
-            JSONObject JSONObject_wind = jsonObject.getJSONObject("wind");
-            Double result_speed = JSONObject_wind.getDouble("speed");
-            // Double result_gust = JSONObject_wind.getDouble("gust");
-            Double result_deg = JSONObject_wind.getDouble("deg");
-            String result_wind = "wind\tspeed: " + result_speed + "\tdeg: " + result_deg;
-
-            // "clouds"
-            JSONObject JSONObject_clouds = jsonObject.getJSONObject("clouds");
-            int result_all = JSONObject_clouds.getInt("all");
-
-            // "dt"
-            int result_dt = jsonObject.getInt("dt");
-
-
-
-
-            // "id"
-            int result_id = jsonObject.getInt("id");
-
-            // "name"
-            String result_name = jsonObject.getString("name");
-
-            // "cod"
-            int result_cod = jsonObject.getInt("cod");
-
-            */
-
-
-            /* MAHNAZ'S VERSION
-            tempString = "coord\tlon: " + result_lon + "\tlat: " + result_lat + "\n" + "sys\tcountry: " + result_country
-                    + "\tsunrise: " + result_sunrise + "\tsunset: " + result_sunset + "\n" + result_weather + "\n"
-                    + "base: " + result_base + "\n" + "main\ttemp: " + result_temp + "\thumidity: " + result_humidity
-                    + "\tpressure: " + result_pressure + "\ttemp_min: " + result_temp_min + "\ttemp_max: "
-                    + result_temp_max + "\n" + result_wind + "\n" + "clouds\tall: " + result_all + "\n" + "dt: "
-                    + result_dt + "\n" + "id: " + result_id + "\n" + "name: " + result_name + "\n" + "cod: "
-                    + result_cod + "\n" + "\n";
-
-             */ // MAHNAZ'S VERSION
-
-
-            /*
-            returnPage.addObject("country", result_country);
-            returnPage.addObject("sunrise", result_sunrise);
-            returnPage.addObject("sunset", result_sunset);
-            returnPage.addObject("base", result_base);
-            returnPage.addObject("temperature", result_temp);
-            returnPage.addObject("humidity", result_humidity);
-            returnPage.addObject("pressure", result_pressure);
-            returnPage.addObject("minimum_temperature", result_temp_min);
-            returnPage.addObject("maximum_temperature", result_temp_max);
-            returnPage.addObject("wind", result_wind);
-             */
 
             // *********************************************************************************************************
             // *********************************************************************************************************
@@ -595,10 +516,19 @@ public class GreetingController {
             // Current
             returnPage.addObject("current_dt", current_dt);
             returnPage.addObject("current_dt_adjusted", current_dt_adjusted);
+            returnPage.addObject("current_dt_adjusted_daydate", current_dt_adjusted_daydate);
+            returnPage.addObject("current_dt_adjusted_hour", current_dt_adjusted_hour);
+
             returnPage.addObject("current_sunrise", current_sunrise);
             returnPage.addObject("current_sunrise_adjusted", current_sunrise_adjusted);
+            returnPage.addObject("current_sunrise_adjusted_daydate", current_sunrise_adjusted_daydate);
+            returnPage.addObject("current_sunrise_adjusted_hour", current_sunrise_adjusted_hour);
+
             returnPage.addObject("current_sunset", current_sunset);
             returnPage.addObject("current_sunset_adjusted", current_sunset_adjusted);
+            returnPage.addObject("current_sunset_adjusted_daydate", current_sunset_adjusted_daydate);
+            returnPage.addObject("current_sunset_adjusted_hour", current_sunset_adjusted_hour);
+
             returnPage.addObject("current_temp", current_temp);
             returnPage.addObject("current_feels_like", current_feels_like);
             returnPage.addObject("current_pressure", current_pressure);
@@ -652,6 +582,32 @@ public class GreetingController {
             returnPage.addObject("hourly_dt_adjusted7", hourly_dt_adjusted[7]);
             returnPage.addObject("hourly_dt_adjusted8", hourly_dt_adjusted[8]);
             returnPage.addObject("hourly_dt_adjusted9", hourly_dt_adjusted[9]);
+
+            // hourly_dt_adjusted_hour
+            //returnPage.addObject("hourly_dt_adjusted_hour", hourly_dt_adjusted_hour);
+            returnPage.addObject("hourly_dt_adjusted_hour0", hourly_dt_adjusted_hour[0]);
+            returnPage.addObject("hourly_dt_adjusted_hour1", hourly_dt_adjusted_hour[1]);
+            returnPage.addObject("hourly_dt_adjusted_hour2", hourly_dt_adjusted_hour[2]);
+            returnPage.addObject("hourly_dt_adjusted_hour3", hourly_dt_adjusted_hour[3]);
+            returnPage.addObject("hourly_dt_adjusted_hour4", hourly_dt_adjusted_hour[4]);
+            returnPage.addObject("hourly_dt_adjusted_hour5", hourly_dt_adjusted_hour[5]);
+            returnPage.addObject("hourly_dt_adjusted_hour6", hourly_dt_adjusted_hour[6]);
+            returnPage.addObject("hourly_dt_adjusted_hour7", hourly_dt_adjusted_hour[7]);
+            returnPage.addObject("hourly_dt_adjusted_hour8", hourly_dt_adjusted_hour[8]);
+            returnPage.addObject("hourly_dt_adjusted_hour9", hourly_dt_adjusted_hour[9]);
+
+            // hourly_dt_adjusted_daydate
+            //returnPage.addObject("hourly_dt_adjusted_daydate", hourly_dt_adjusted_daydate);
+            returnPage.addObject("hourly_dt_adjusted_daydate0", hourly_dt_adjusted_daydate[0]);
+            returnPage.addObject("hourly_dt_adjusted_daydate1", hourly_dt_adjusted_daydate[1]);
+            returnPage.addObject("hourly_dt_adjusted_daydate2", hourly_dt_adjusted_daydate[2]);
+            returnPage.addObject("hourly_dt_adjusted_daydate3", hourly_dt_adjusted_daydate[3]);
+            returnPage.addObject("hourly_dt_adjusted_daydate4", hourly_dt_adjusted_daydate[4]);
+            returnPage.addObject("hourly_dt_adjusted_daydate5", hourly_dt_adjusted_daydate[5]);
+            returnPage.addObject("hourly_dt_adjusted_daydate6", hourly_dt_adjusted_daydate[6]);
+            returnPage.addObject("hourly_dt_adjusted_daydate7", hourly_dt_adjusted_daydate[7]);
+            returnPage.addObject("hourly_dt_adjusted_daydate8", hourly_dt_adjusted_daydate[8]);
+            returnPage.addObject("hourly_dt_adjusted_daydate9", hourly_dt_adjusted_daydate[9]);
 
 
             // hourly_temp
@@ -852,6 +808,20 @@ public class GreetingController {
             returnPage.addObject("hourly_pop9", hourly_pop[9]);
 
 
+            // hourly_pop_adjusted
+            // returnPage.addObject("hourly_pop_adjusted", hourly_pop_adjusted);
+            returnPage.addObject("hourly_pop_adjusted0", hourly_pop_adjusted[0]);
+            returnPage.addObject("hourly_pop_adjusted1", hourly_pop_adjusted[1]);
+            returnPage.addObject("hourly_pop_adjusted2", hourly_pop_adjusted[2]);
+            returnPage.addObject("hourly_pop_adjusted3", hourly_pop_adjusted[3]);
+            returnPage.addObject("hourly_pop_adjusted4", hourly_pop_adjusted[4]);
+            returnPage.addObject("hourly_pop_adjusted5", hourly_pop_adjusted[5]);
+            returnPage.addObject("hourly_pop_adjusted6", hourly_pop_adjusted[6]);
+            returnPage.addObject("hourly_pop_adjusted7", hourly_pop_adjusted[7]);
+            returnPage.addObject("hourly_pop_adjusted8", hourly_pop_adjusted[8]);
+            returnPage.addObject("hourly_pop_adjusted9", hourly_pop_adjusted[9]);
+
+
 
 
 
@@ -885,6 +855,29 @@ public class GreetingController {
             returnPage.addObject("daily_dt_adjusted5", daily_dt_adjusted[5]);
             returnPage.addObject("daily_dt_adjusted6", daily_dt_adjusted[6]);
 
+            // daily_dt_adjusted_hour
+            //returnPage.addObject("daily_dt_adjusted_hour", daily_dt_adjusted_hour);
+            returnPage.addObject("daily_dt_adjusted_hour0", daily_dt_adjusted_hour[0]);
+            returnPage.addObject("daily_dt_adjusted_hour1", daily_dt_adjusted_hour[1]);
+            returnPage.addObject("daily_dt_adjusted_hour2", daily_dt_adjusted_hour[2]);
+            returnPage.addObject("daily_dt_adjusted_hour3", daily_dt_adjusted_hour[3]);
+            returnPage.addObject("daily_dt_adjusted_hour4", daily_dt_adjusted_hour[4]);
+            returnPage.addObject("daily_dt_adjusted_hour5", daily_dt_adjusted_hour[5]);
+            returnPage.addObject("daily_dt_adjusted_hour6", daily_dt_adjusted_hour[6]);
+
+            // daily_dt_adjusted_daydate
+            //returnPage.addObject("daily_dt_adjusted_daydate", daily_dt_adjusted_daydate);
+            returnPage.addObject("daily_dt_adjusted_daydate0", daily_dt_adjusted_daydate[0]);
+            returnPage.addObject("daily_dt_adjusted_daydate1", daily_dt_adjusted_daydate[1]);
+            returnPage.addObject("daily_dt_adjusted_daydate2", daily_dt_adjusted_daydate[2]);
+            returnPage.addObject("daily_dt_adjusted_daydate3", daily_dt_adjusted_daydate[3]);
+            returnPage.addObject("daily_dt_adjusted_daydate4", daily_dt_adjusted_daydate[4]);
+            returnPage.addObject("daily_dt_adjusted_daydate5", daily_dt_adjusted_daydate[5]);
+            returnPage.addObject("daily_dt_adjusted_daydate6", daily_dt_adjusted_daydate[6]);
+
+
+
+
             // daily_sunrise
             //returnPage.addObject("daily_sunrise", daily_sunrise);
             returnPage.addObject("daily_sunrise0", daily_sunrise[0]);
@@ -904,6 +897,30 @@ public class GreetingController {
             returnPage.addObject("daily_sunrise_adjusted4", daily_sunrise_adjusted[4]);
             returnPage.addObject("daily_sunrise_adjusted5", daily_sunrise_adjusted[5]);
             returnPage.addObject("daily_sunrise_adjusted6", daily_sunrise_adjusted[6]);
+
+            // daily_sunrise_adjusted_hour
+            //returnPage.addObject("daily_sunrise_adjusted_hour", daily_sunrise_adjusted_hour);
+            returnPage.addObject("daily_sunrise_adjusted_hour0", daily_sunrise_adjusted_hour[0]);
+            returnPage.addObject("daily_sunrise_adjusted_hour1", daily_sunrise_adjusted_hour[1]);
+            returnPage.addObject("daily_sunrise_adjusted_hour2", daily_sunrise_adjusted_hour[2]);
+            returnPage.addObject("daily_sunrise_adjusted_hour3", daily_sunrise_adjusted_hour[3]);
+            returnPage.addObject("daily_sunrise_adjusted_hour4", daily_sunrise_adjusted_hour[4]);
+            returnPage.addObject("daily_sunrise_adjusted_hour5", daily_sunrise_adjusted_hour[5]);
+            returnPage.addObject("daily_sunrise_adjusted_hour6", daily_sunrise_adjusted_hour[6]);
+
+            // daily_sunrise_adjusted_daydate
+            //returnPage.addObject("daily_sunrise_adjusted_daydate", daily_sunrise_adjusted_daydate);
+            returnPage.addObject("daily_sunrise_adjusted_daydate0", daily_sunrise_adjusted_daydate[0]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate1", daily_sunrise_adjusted_daydate[1]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate2", daily_sunrise_adjusted_daydate[2]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate3", daily_sunrise_adjusted_daydate[3]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate4", daily_sunrise_adjusted_daydate[4]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate5", daily_sunrise_adjusted_daydate[5]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate6", daily_sunrise_adjusted_daydate[6]);
+
+
+
+
 
             // daily_sunset
             //returnPage.addObject("daily_sunset", daily_sunset);
@@ -925,6 +942,25 @@ public class GreetingController {
             returnPage.addObject("daily_sunset_adjusted5", daily_sunset_adjusted[5]);
             returnPage.addObject("daily_sunset_adjusted6", daily_sunset_adjusted[6]);
 
+            // daily_sunset_adjusted_hour
+            //returnPage.addObject("daily_sunset_adjusted_hour", daily_sunset_adjusted_hour);
+            returnPage.addObject("daily_sunset_adjusted_hour0", daily_sunset_adjusted_hour[0]);
+            returnPage.addObject("daily_sunset_adjusted_hour1", daily_sunset_adjusted_hour[1]);
+            returnPage.addObject("daily_sunset_adjusted_hour2", daily_sunset_adjusted_hour[2]);
+            returnPage.addObject("daily_sunset_adjusted_hour3", daily_sunset_adjusted_hour[3]);
+            returnPage.addObject("daily_sunset_adjusted_hour4", daily_sunset_adjusted_hour[4]);
+            returnPage.addObject("daily_sunset_adjusted_hour5", daily_sunset_adjusted_hour[5]);
+            returnPage.addObject("daily_sunset_adjusted_hour6", daily_sunset_adjusted_hour[6]);
+
+            // daily_sunset_adjusted_daydate
+            //returnPage.addObject("daily_sunset_adjusted_daydate", daily_sunset_adjusted_daydate);
+            returnPage.addObject("daily_sunset_adjusted_daydate0", daily_sunset_adjusted_daydate[0]);
+            returnPage.addObject("daily_sunset_adjusted_daydate1", daily_sunset_adjusted_daydate[1]);
+            returnPage.addObject("daily_sunset_adjusted_daydate2", daily_sunset_adjusted_daydate[2]);
+            returnPage.addObject("daily_sunset_adjusted_daydate3", daily_sunset_adjusted_daydate[3]);
+            returnPage.addObject("daily_sunset_adjusted_daydate4", daily_sunset_adjusted_daydate[4]);
+            returnPage.addObject("daily_sunset_adjusted_daydate5", daily_sunset_adjusted_daydate[5]);
+            returnPage.addObject("daily_sunset_adjusted_daydate6", daily_sunset_adjusted_daydate[6]);
 
 
 
@@ -1157,6 +1193,17 @@ public class GreetingController {
             returnPage.addObject("daily_pop6", daily_pop[6]);
 
 
+            // daily_pop_adjusted
+            // returnPage.addObject("daily_pop_adjusted", daily_pop_adjusted);
+            returnPage.addObject("daily_pop_adjusted0", daily_pop_adjusted[0]);
+            returnPage.addObject("daily_pop_adjusted1", daily_pop_adjusted[1]);
+            returnPage.addObject("daily_pop_adjusted2", daily_pop_adjusted[2]);
+            returnPage.addObject("daily_pop_adjusted3", daily_pop_adjusted[3]);
+            returnPage.addObject("daily_pop_adjusted4", daily_pop_adjusted[4]);
+            returnPage.addObject("daily_pop_adjusted5", daily_pop_adjusted[5]);
+            returnPage.addObject("daily_pop_adjusted6", daily_pop_adjusted[6]);
+
+
             //returnPage.addObject("daily_rain", daily_rain);
 
             // daily_uvi
@@ -1195,13 +1242,13 @@ public class GreetingController {
     @RequestMapping("/location/{LATLON}")
     public ModelAndView get_weather_coordination(@PathVariable String LATLON) throws ParseException {
 
-	    ModelAndView returnPage = new ModelAndView();
+        ModelAndView returnPage = new ModelAndView();
 
         //String API_KEY = "ce490961c6mshc593f5f415ee002p1dc26bjsn1776dba774f9";
         //API_KEY = "ce490961c6mshc593f5f415ee002p1dc26bjsn1776dba774f9";
         String API_KEY = "f3f74c7f7d8f187ffe331859469e462c";
         System.out.println("Latitude and Longtitude: " + LATLON);
-        
+
         // String unit = "imperial";
         String UNIT = "metric";
 
@@ -1260,19 +1307,25 @@ public class GreetingController {
 
             int current_dt = JSONObject_current.getInt("dt");
             int current_dt_adjusted = current_dt + timezone_offset;
+            String current_dt_adjusted_daydate = getDayDate(current_dt_adjusted);
+            String current_dt_adjusted_hour = getHour(current_dt_adjusted);
             int current_sunrise = JSONObject_current.getInt("sunrise");
             int current_sunrise_adjusted = current_sunrise + timezone_offset;
+            String current_sunrise_adjusted_daydate = getDayDate(current_sunrise_adjusted);
+            String current_sunrise_adjusted_hour = getHour(current_sunrise_adjusted);
             int current_sunset = JSONObject_current.getInt("sunset");
             int current_sunset_adjusted = current_sunset + timezone_offset;
-            double current_temp = JSONObject_current.getDouble("temp");
-            double current_feels_like = JSONObject_current.getDouble("feels_like");
+            String current_sunset_adjusted_daydate = getDayDate(current_sunset_adjusted);
+            String current_sunset_adjusted_hour = getHour(current_sunset_adjusted);
+            int current_temp = (int) JSONObject_current.getDouble("temp");
+            int current_feels_like = (int) JSONObject_current.getDouble("feels_like");
             int current_pressure = JSONObject_current.getInt("pressure");
             int current_humidity = JSONObject_current.getInt("humidity");
-            double current_dew_point = JSONObject_current.getDouble("dew_point");
-            double current_uvi = JSONObject_current.getDouble("uvi");
+            int current_dew_point = (int) JSONObject_current.getDouble("dew_point");
+            int current_uvi = (int) JSONObject_current.getDouble("uvi");
             int current_clouds = JSONObject_current.getInt("clouds");
             int current_visibility = JSONObject_current.getInt("visibility");
-            double current_wind_speed = JSONObject_current.getDouble("wind_speed");
+            int current_wind_speed = (int) JSONObject_current.getDouble("wind_speed");
             int current_wind_deg = JSONObject_current.getInt("wind_deg");
 
 
@@ -1284,11 +1337,11 @@ public class GreetingController {
 
             JSONArray JSONArray_current_weather = JSONObject_current.getJSONArray("weather");
             //if (JSONArray_current_weather.length() > 0){
-                JSONObject_current_weather = JSONArray_current_weather.getJSONObject(0);
-                current_weather_id = JSONObject_current_weather.getInt("id");
-                current_weather_main = JSONObject_current_weather.getString("main");
-                current_weather_description = JSONObject_current_weather.getString("description");
-                current_weather_icon = JSONObject_current_weather.getString("icon");
+            JSONObject_current_weather = JSONArray_current_weather.getJSONObject(0);
+            current_weather_id = JSONObject_current_weather.getInt("id");
+            current_weather_main = JSONObject_current_weather.getString("main");
+            current_weather_description = JSONObject_current_weather.getString("description");
+            current_weather_icon = JSONObject_current_weather.getString("icon");
             //}
             //else
             //{
@@ -1313,21 +1366,23 @@ public class GreetingController {
             // *********************************************************************************************************
             // *********************************************************************************************************
 
-             final int numOfHours = 10;
+            final int numOfHours = 10;
 
             JSONArray JSONArray_hourly = JSONObject_openWeatherAPIResponse.getJSONArray("hourly");
             // The whole hourly array is passed to the JSONArray, JSONArray_hourly, in the above line.
 
             int[] hourly_dt = new int[numOfHours];
             int[] hourly_dt_adjusted = new int[numOfHours];
-            double[] hourly_temp = new double[numOfHours];
-            double[] hourly_feels_like = new double[numOfHours];
+            String[] hourly_dt_adjusted_daydate = new String[numOfHours];
+            String[] hourly_dt_adjusted_hour = new String[numOfHours];
+            int[] hourly_temp = new int[numOfHours];
+            int[] hourly_feels_like = new int[numOfHours];
             int[] hourly_pressure = new int[numOfHours];
             int[] hourly_humidity = new int[numOfHours];
-            double[] hourly_dew_point = new double[numOfHours];
+            int[] hourly_dew_point = new int[numOfHours];
             int[] hourly_clouds = new int[numOfHours];
             int[] hourly_visibility = new int[numOfHours];
-            double[] hourly_wind_speed = new double[numOfHours];
+            int[] hourly_wind_speed = new int[numOfHours];
             int[] hourly_wind_deg = new int[numOfHours];
 
             int[] hourly_weather_id = new int[numOfHours];
@@ -1336,6 +1391,7 @@ public class GreetingController {
             String[] hourly_weather_icon = new String[numOfHours];
 
             double[] hourly_pop = new double[numOfHours];
+            int[] hourly_pop_adjusted = new int[numOfHours];
 
             // ten hours will be enough
             for (int i = 0; i < numOfHours; i++)
@@ -1343,16 +1399,21 @@ public class GreetingController {
                 hourly_dt[i] = JSONArray_hourly.getJSONObject(i).getInt("dt");
                 // convert to local time
                 hourly_dt_adjusted[i] = hourly_dt[i] + timezone_offset;
-                hourly_temp[i] = JSONArray_hourly.getJSONObject(i).getDouble("temp");
-                hourly_feels_like[i] = JSONArray_hourly.getJSONObject(i).getDouble("feels_like");
+                hourly_dt_adjusted_daydate[i] = getDayDate(hourly_dt_adjusted[i]);
+                hourly_dt_adjusted_hour[i] = getHour(hourly_dt_adjusted[i]);
+
+                hourly_temp[i] = (int) JSONArray_hourly.getJSONObject(i).getDouble("temp");
+                hourly_feels_like[i] = (int) JSONArray_hourly.getJSONObject(i).getDouble("feels_like");
                 hourly_pressure[i] = JSONArray_hourly.getJSONObject(i).getInt("pressure");
                 hourly_humidity[i] = JSONArray_hourly.getJSONObject(i).getInt("humidity");
-                hourly_dew_point[i] = JSONArray_hourly.getJSONObject(i).getDouble("dew_point");
+                hourly_dew_point[i] = (int) JSONArray_hourly.getJSONObject(i).getDouble("dew_point");
                 hourly_clouds[i] = JSONArray_hourly.getJSONObject(i).getInt("clouds");
                 hourly_visibility[i] = JSONArray_hourly.getJSONObject(i).getInt("visibility");
-                hourly_wind_speed[i] = JSONArray_hourly.getJSONObject(i).getDouble("wind_speed");
+                hourly_wind_speed[i] = (int) JSONArray_hourly.getJSONObject(i).getDouble("wind_speed");
                 hourly_wind_deg[i] = JSONArray_hourly.getJSONObject(i).getInt("wind_deg");
                 hourly_pop[i] = JSONArray_hourly.getJSONObject(i).getDouble("pop");
+                // convert pop to percentage
+                hourly_pop_adjusted[i] = (int) (hourly_pop[i] * 100);
 
                 // I think these next four lines are right but if there's an error check these
                 hourly_weather_id[i] = JSONArray_hourly.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getInt("id");
@@ -1380,27 +1441,34 @@ public class GreetingController {
 
             int[] daily_dt = new int[numOfDays];
             int[] daily_dt_adjusted = new int[numOfDays];
+            String[] daily_dt_adjusted_daydate = new String[numOfDays];
+            String[] daily_dt_adjusted_hour = new String[numOfDays];
             int[] daily_sunrise = new int[numOfDays];
             int[] daily_sunrise_adjusted = new int[numOfDays];
+            String[] daily_sunrise_adjusted_daydate = new String[numOfDays];
+            String[] daily_sunrise_adjusted_hour = new String[numOfDays];
             int[] daily_sunset = new int[numOfDays];
             int[] daily_sunset_adjusted = new int[numOfDays];
+            String[] daily_sunset_adjusted_daydate = new String[numOfDays];
+            String[] daily_sunset_adjusted_hour = new String[numOfDays];
 
-            double[] daily_temp_day = new double[numOfDays];
-            double[] daily_temp_min = new double[numOfDays];
-            double[] daily_temp_max = new double[numOfDays];
-            double[] daily_temp_night = new double[numOfDays];
-            double[] daily_temp_eve = new double[numOfDays];
-            double[] daily_temp_morn = new double[numOfDays];
 
-            double[] daily_feels_like_day = new double[numOfDays];
-            double[] daily_feels_like_night = new double[numOfDays];
-            double[] daily_feels_like_eve = new double[numOfDays];
-            double[] daily_feels_like_morn = new double[numOfDays];
+            int[] daily_temp_day = new int[numOfDays];
+            int[] daily_temp_min = new int[numOfDays];
+            int[] daily_temp_max = new int[numOfDays];
+            int[] daily_temp_night = new int[numOfDays];
+            int[] daily_temp_eve = new int[numOfDays];
+            int[] daily_temp_morn = new int[numOfDays];
+
+            int[] daily_feels_like_day = new int[numOfDays];
+            int[] daily_feels_like_night = new int[numOfDays];
+            int[] daily_feels_like_eve = new int[numOfDays];
+            int[] daily_feels_like_morn = new int[numOfDays];
 
             int[] daily_pressure = new int[numOfDays];
             int[] daily_humidity = new int[numOfDays];
-            double[] daily_dew_point = new double[numOfDays];
-            double[] daily_wind_speed = new double[numOfDays];
+            int[] daily_dew_point = new int[numOfDays];
+            int[] daily_wind_speed = new int[numOfDays];
             int[] daily_wind_deg = new int[numOfDays];
 
             int[] daily_weather_id = new int[numOfDays];
@@ -1410,8 +1478,9 @@ public class GreetingController {
 
             int[] daily_clouds = new int[numOfDays];
             double[] daily_pop = new double[numOfDays]; // *********
+            int[] daily_pop_adjusted = new int[numOfDays];
             double[] daily_rain = new double[numOfDays];
-            double[] daily_uvi = new double[numOfDays];
+            int[] daily_uvi = new int[numOfDays];
 
 
 
@@ -1420,29 +1489,37 @@ public class GreetingController {
             {
                 daily_dt[i] = JSONArray_daily.getJSONObject(i).getInt("dt");
                 daily_dt_adjusted[i] = daily_dt[i] + timezone_offset;
+                daily_dt_adjusted_hour[i] = getHour(daily_dt_adjusted[i]);
+                daily_dt_adjusted_daydate[i] = getDayDate(daily_dt_adjusted[i]);
+
                 daily_sunrise[i] = JSONArray_daily.getJSONObject(i).getInt("sunrise");
                 daily_sunrise_adjusted[i] = daily_sunrise[i] + timezone_offset;
+                daily_sunrise_adjusted_hour[i] = getHour(daily_sunrise_adjusted[i]);
+                daily_sunrise_adjusted_daydate[i] = getDayDate(daily_sunrise_adjusted[i]);
+
                 daily_sunset[i] = JSONArray_daily.getJSONObject(i).getInt("sunset");
                 daily_sunset_adjusted[i] = daily_sunset[i] + timezone_offset;
+                daily_sunset_adjusted_hour[i] = getHour(daily_sunset_adjusted[i]);
+                daily_sunset_adjusted_daydate[i] = getDayDate(daily_sunset_adjusted[i]);
 
-                daily_temp_day[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("day");
-                daily_temp_min[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("min");
-                daily_temp_max[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("max");
-                daily_temp_night[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("night");
-                daily_temp_eve[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("eve");
-                daily_temp_morn[i] = JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("morn");
+                daily_temp_day[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("day");
+                daily_temp_min[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("min");
+                daily_temp_max[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("max");
+                daily_temp_night[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("night");
+                daily_temp_eve[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("eve");
+                daily_temp_morn[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("temp").getDouble("morn");
 
 
-                daily_feels_like_day[i] = JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("day");
-                daily_feels_like_night[i] = JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("night");
-                daily_feels_like_eve[i] = JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("eve");
-                daily_feels_like_morn[i] = JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("morn");
+                daily_feels_like_day[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("day");
+                daily_feels_like_night[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("night");
+                daily_feels_like_eve[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("eve");
+                daily_feels_like_morn[i] = (int) JSONArray_daily.getJSONObject(i).getJSONObject("feels_like").getDouble("morn");
 
 
                 daily_pressure[i] = JSONArray_daily.getJSONObject(i).getInt("pressure");
                 daily_humidity[i] = JSONArray_daily.getJSONObject(i).getInt("humidity");
-                daily_dew_point[i] = JSONArray_daily.getJSONObject(i).getDouble("dew_point");
-                daily_wind_speed[i] = JSONArray_daily.getJSONObject(i).getDouble("wind_speed");
+                daily_dew_point[i] = (int) JSONArray_daily.getJSONObject(i).getDouble("dew_point");
+                daily_wind_speed[i] = (int) JSONArray_daily.getJSONObject(i).getDouble("wind_speed");
                 daily_wind_deg[i] = JSONArray_daily.getJSONObject(i).getInt("wind_deg");
 
 
@@ -1454,141 +1531,13 @@ public class GreetingController {
 
                 daily_clouds[i] = JSONArray_daily.getJSONObject(i).getInt("clouds");
                 daily_pop[i] = JSONArray_daily.getJSONObject(i).getDouble("pop");
+                // convert to percentages
+                daily_pop_adjusted[i] = (int) (daily_pop[i] * 100);
                 //daily_rain[i] = JSONArray_daily.getJSONObject(i).getDouble("rain");
-                daily_uvi[i] = JSONArray_daily.getJSONObject(i).getDouble("uvi");
+                daily_uvi[i] = (int) JSONArray_daily.getJSONObject(i).getDouble("uvi");
             }
 
 
-
-            /* MAHNAZ'S VERSION
-            // "weather"
-            String result_weather;
-            JSONArray JSONArray_weather = jsonObject.getJSONArray("weather");
-            if (JSONArray_weather.length() > 0) {
-                JSONObject JSONObject_weather = JSONArray_weather.getJSONObject(0);
-                int result_id = JSONObject_weather.getInt("id");
-                String result_main = JSONObject_weather.getString("main");
-                String result_description = JSONObject_weather.getString("description");
-                String result_icon = JSONObject_weather.getString("icon");
-
-                result_weather = "weather\tid: " + result_id + "\tmain: " + result_main + "\tdescription: "
-                        + result_description + "\ticon: " + result_icon;
-            } else {
-                result_weather = "weather empty!";
-            }
-            */ // MAHNAZ'S VERSION
-
-
-            /* // SHOULD BE COMMENTED OUT ALWAYS
-            int minutelyDt[];
-            double minutelyPrecipitation[];
-
-            int hourlyDt[];
-            double hourlyTemp[];
-            double hourlyFeels_like[];
-            int hourlyPressure[];
-            int hourlyHumidity[];
-            double hourlyDew_point[];
-            int hourlyClouds[];
-            int hourlyVisibility[];
-            */
-
-
-            /*
-            // "weather" in "current"
-            String weatherString;
-            JSONArray JSONArray_weather = JSONObject_current.getJSONArray("weather");
-            if (JSONArray_weather.length() > 0) {
-                JSONObject JSONObject_weather = JSONArray_weather.getJSONObject(0);
-                int weather_id = JSONObject_weather.getInt("id");
-                String weather_main = JSONObject_weather.getString("main");
-                String weather_description = JSONObject_weather.getString("description");
-                String weather_icon = JSONObject_weather.getString("icon");
-
-                weatherString = "weather\tid: " + weather_id + "\tmain: " + weather_main + "\tdescription: "
-                        + weather_description + "\ticon: " + weather_icon;
-
-            } else {
-                weatherString = "weather empty!";
-            }
-            */
-
-
-            /*
-            // "sys"
-            JSONObject JSONObject_sys = jsonObject.getJSONObject("sys");
-            String result_country = JSONObject_sys.getString("country");
-            int result_sunrise = JSONObject_sys.getInt("sunrise");
-            int result_sunset = JSONObject_sys.getInt("sunset");
-
-
-
-
-
-            // "base"
-            String result_base = jsonObject.getString("base");
-
-            // "main"
-            JSONObject JSONObject_main = jsonObject.getJSONObject("main");
-            Double result_temp = JSONObject_main.getDouble("temp");
-            Double result_pressure = JSONObject_main.getDouble("pressure");
-            Double result_humidity = JSONObject_main.getDouble("humidity");
-            Double result_temp_min = JSONObject_main.getDouble("temp_min");
-            Double result_temp_max = JSONObject_main.getDouble("temp_max");
-
-            // "wind"
-            JSONObject JSONObject_wind = jsonObject.getJSONObject("wind");
-            Double result_speed = JSONObject_wind.getDouble("speed");
-            // Double result_gust = JSONObject_wind.getDouble("gust");
-            Double result_deg = JSONObject_wind.getDouble("deg");
-            String result_wind = "wind\tspeed: " + result_speed + "\tdeg: " + result_deg;
-
-            // "clouds"
-            JSONObject JSONObject_clouds = jsonObject.getJSONObject("clouds");
-            int result_all = JSONObject_clouds.getInt("all");
-
-            // "dt"
-            int result_dt = jsonObject.getInt("dt");
-
-
-
-
-            // "id"
-            int result_id = jsonObject.getInt("id");
-
-            // "name"
-            String result_name = jsonObject.getString("name");
-
-            // "cod"
-            int result_cod = jsonObject.getInt("cod");
-
-            */
-
-
-            /* MAHNAZ'S VERSION
-            tempString = "coord\tlon: " + result_lon + "\tlat: " + result_lat + "\n" + "sys\tcountry: " + result_country
-                    + "\tsunrise: " + result_sunrise + "\tsunset: " + result_sunset + "\n" + result_weather + "\n"
-                    + "base: " + result_base + "\n" + "main\ttemp: " + result_temp + "\thumidity: " + result_humidity
-                    + "\tpressure: " + result_pressure + "\ttemp_min: " + result_temp_min + "\ttemp_max: "
-                    + result_temp_max + "\n" + result_wind + "\n" + "clouds\tall: " + result_all + "\n" + "dt: "
-                    + result_dt + "\n" + "id: " + result_id + "\n" + "name: " + result_name + "\n" + "cod: "
-                    + result_cod + "\n" + "\n";
-
-             */ // MAHNAZ'S VERSION
-
-
-            /*
-            returnPage.addObject("country", result_country);
-            returnPage.addObject("sunrise", result_sunrise);
-            returnPage.addObject("sunset", result_sunset);
-            returnPage.addObject("base", result_base);
-            returnPage.addObject("temperature", result_temp);
-            returnPage.addObject("humidity", result_humidity);
-            returnPage.addObject("pressure", result_pressure);
-            returnPage.addObject("minimum_temperature", result_temp_min);
-            returnPage.addObject("maximum_temperature", result_temp_max);
-            returnPage.addObject("wind", result_wind);
-             */
 
             // *********************************************************************************************************
             // *********************************************************************************************************
@@ -1609,10 +1558,19 @@ public class GreetingController {
             // Current
             returnPage.addObject("current_dt", current_dt);
             returnPage.addObject("current_dt_adjusted", current_dt_adjusted);
+            returnPage.addObject("current_dt_adjusted_daydate", current_dt_adjusted_daydate);
+            returnPage.addObject("current_dt_adjusted_hour", current_dt_adjusted_hour);
+
             returnPage.addObject("current_sunrise", current_sunrise);
             returnPage.addObject("current_sunrise_adjusted", current_sunrise_adjusted);
+            returnPage.addObject("current_sunrise_adjusted_daydate", current_sunrise_adjusted_daydate);
+            returnPage.addObject("current_sunrise_adjusted_hour", current_sunrise_adjusted_hour);
+
             returnPage.addObject("current_sunset", current_sunset);
             returnPage.addObject("current_sunset_adjusted", current_sunset_adjusted);
+            returnPage.addObject("current_sunset_adjusted_daydate", current_sunset_adjusted_daydate);
+            returnPage.addObject("current_sunset_adjusted_hour", current_sunset_adjusted_hour);
+
             returnPage.addObject("current_temp", current_temp);
             returnPage.addObject("current_feels_like", current_feels_like);
             returnPage.addObject("current_pressure", current_pressure);
@@ -1666,6 +1624,32 @@ public class GreetingController {
             returnPage.addObject("hourly_dt_adjusted7", hourly_dt_adjusted[7]);
             returnPage.addObject("hourly_dt_adjusted8", hourly_dt_adjusted[8]);
             returnPage.addObject("hourly_dt_adjusted9", hourly_dt_adjusted[9]);
+
+            // hourly_dt_adjusted_hour
+            //returnPage.addObject("hourly_dt_adjusted_hour", hourly_dt_adjusted_hour);
+            returnPage.addObject("hourly_dt_adjusted_hour0", hourly_dt_adjusted_hour[0]);
+            returnPage.addObject("hourly_dt_adjusted_hour1", hourly_dt_adjusted_hour[1]);
+            returnPage.addObject("hourly_dt_adjusted_hour2", hourly_dt_adjusted_hour[2]);
+            returnPage.addObject("hourly_dt_adjusted_hour3", hourly_dt_adjusted_hour[3]);
+            returnPage.addObject("hourly_dt_adjusted_hour4", hourly_dt_adjusted_hour[4]);
+            returnPage.addObject("hourly_dt_adjusted_hour5", hourly_dt_adjusted_hour[5]);
+            returnPage.addObject("hourly_dt_adjusted_hour6", hourly_dt_adjusted_hour[6]);
+            returnPage.addObject("hourly_dt_adjusted_hour7", hourly_dt_adjusted_hour[7]);
+            returnPage.addObject("hourly_dt_adjusted_hour8", hourly_dt_adjusted_hour[8]);
+            returnPage.addObject("hourly_dt_adjusted_hour9", hourly_dt_adjusted_hour[9]);
+
+            // hourly_dt_adjusted_daydate
+            //returnPage.addObject("hourly_dt_adjusted_daydate", hourly_dt_adjusted_daydate);
+            returnPage.addObject("hourly_dt_adjusted_daydate0", hourly_dt_adjusted_daydate[0]);
+            returnPage.addObject("hourly_dt_adjusted_daydate1", hourly_dt_adjusted_daydate[1]);
+            returnPage.addObject("hourly_dt_adjusted_daydate2", hourly_dt_adjusted_daydate[2]);
+            returnPage.addObject("hourly_dt_adjusted_daydate3", hourly_dt_adjusted_daydate[3]);
+            returnPage.addObject("hourly_dt_adjusted_daydate4", hourly_dt_adjusted_daydate[4]);
+            returnPage.addObject("hourly_dt_adjusted_daydate5", hourly_dt_adjusted_daydate[5]);
+            returnPage.addObject("hourly_dt_adjusted_daydate6", hourly_dt_adjusted_daydate[6]);
+            returnPage.addObject("hourly_dt_adjusted_daydate7", hourly_dt_adjusted_daydate[7]);
+            returnPage.addObject("hourly_dt_adjusted_daydate8", hourly_dt_adjusted_daydate[8]);
+            returnPage.addObject("hourly_dt_adjusted_daydate9", hourly_dt_adjusted_daydate[9]);
 
 
             // hourly_temp
@@ -1866,6 +1850,20 @@ public class GreetingController {
             returnPage.addObject("hourly_pop9", hourly_pop[9]);
 
 
+            // hourly_pop_adjusted
+            // returnPage.addObject("hourly_pop_adjusted", hourly_pop_adjusted);
+            returnPage.addObject("hourly_pop_adjusted0", hourly_pop_adjusted[0]);
+            returnPage.addObject("hourly_pop_adjusted1", hourly_pop_adjusted[1]);
+            returnPage.addObject("hourly_pop_adjusted2", hourly_pop_adjusted[2]);
+            returnPage.addObject("hourly_pop_adjusted3", hourly_pop_adjusted[3]);
+            returnPage.addObject("hourly_pop_adjusted4", hourly_pop_adjusted[4]);
+            returnPage.addObject("hourly_pop_adjusted5", hourly_pop_adjusted[5]);
+            returnPage.addObject("hourly_pop_adjusted6", hourly_pop_adjusted[6]);
+            returnPage.addObject("hourly_pop_adjusted7", hourly_pop_adjusted[7]);
+            returnPage.addObject("hourly_pop_adjusted8", hourly_pop_adjusted[8]);
+            returnPage.addObject("hourly_pop_adjusted9", hourly_pop_adjusted[9]);
+
+
 
 
 
@@ -1899,6 +1897,29 @@ public class GreetingController {
             returnPage.addObject("daily_dt_adjusted5", daily_dt_adjusted[5]);
             returnPage.addObject("daily_dt_adjusted6", daily_dt_adjusted[6]);
 
+            // daily_dt_adjusted_hour
+            //returnPage.addObject("daily_dt_adjusted_hour", daily_dt_adjusted_hour);
+            returnPage.addObject("daily_dt_adjusted_hour0", daily_dt_adjusted_hour[0]);
+            returnPage.addObject("daily_dt_adjusted_hour1", daily_dt_adjusted_hour[1]);
+            returnPage.addObject("daily_dt_adjusted_hour2", daily_dt_adjusted_hour[2]);
+            returnPage.addObject("daily_dt_adjusted_hour3", daily_dt_adjusted_hour[3]);
+            returnPage.addObject("daily_dt_adjusted_hour4", daily_dt_adjusted_hour[4]);
+            returnPage.addObject("daily_dt_adjusted_hour5", daily_dt_adjusted_hour[5]);
+            returnPage.addObject("daily_dt_adjusted_hour6", daily_dt_adjusted_hour[6]);
+
+            // daily_dt_adjusted_daydate
+            //returnPage.addObject("daily_dt_adjusted_daydate", daily_dt_adjusted_daydate);
+            returnPage.addObject("daily_dt_adjusted_daydate0", daily_dt_adjusted_daydate[0]);
+            returnPage.addObject("daily_dt_adjusted_daydate1", daily_dt_adjusted_daydate[1]);
+            returnPage.addObject("daily_dt_adjusted_daydate2", daily_dt_adjusted_daydate[2]);
+            returnPage.addObject("daily_dt_adjusted_daydate3", daily_dt_adjusted_daydate[3]);
+            returnPage.addObject("daily_dt_adjusted_daydate4", daily_dt_adjusted_daydate[4]);
+            returnPage.addObject("daily_dt_adjusted_daydate5", daily_dt_adjusted_daydate[5]);
+            returnPage.addObject("daily_dt_adjusted_daydate6", daily_dt_adjusted_daydate[6]);
+
+
+
+
             // daily_sunrise
             //returnPage.addObject("daily_sunrise", daily_sunrise);
             returnPage.addObject("daily_sunrise0", daily_sunrise[0]);
@@ -1918,6 +1939,30 @@ public class GreetingController {
             returnPage.addObject("daily_sunrise_adjusted4", daily_sunrise_adjusted[4]);
             returnPage.addObject("daily_sunrise_adjusted5", daily_sunrise_adjusted[5]);
             returnPage.addObject("daily_sunrise_adjusted6", daily_sunrise_adjusted[6]);
+
+            // daily_sunrise_adjusted_hour
+            //returnPage.addObject("daily_sunrise_adjusted_hour", daily_sunrise_adjusted_hour);
+            returnPage.addObject("daily_sunrise_adjusted_hour0", daily_sunrise_adjusted_hour[0]);
+            returnPage.addObject("daily_sunrise_adjusted_hour1", daily_sunrise_adjusted_hour[1]);
+            returnPage.addObject("daily_sunrise_adjusted_hour2", daily_sunrise_adjusted_hour[2]);
+            returnPage.addObject("daily_sunrise_adjusted_hour3", daily_sunrise_adjusted_hour[3]);
+            returnPage.addObject("daily_sunrise_adjusted_hour4", daily_sunrise_adjusted_hour[4]);
+            returnPage.addObject("daily_sunrise_adjusted_hour5", daily_sunrise_adjusted_hour[5]);
+            returnPage.addObject("daily_sunrise_adjusted_hour6", daily_sunrise_adjusted_hour[6]);
+
+            // daily_sunrise_adjusted_daydate
+            //returnPage.addObject("daily_sunrise_adjusted_daydate", daily_sunrise_adjusted_daydate);
+            returnPage.addObject("daily_sunrise_adjusted_daydate0", daily_sunrise_adjusted_daydate[0]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate1", daily_sunrise_adjusted_daydate[1]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate2", daily_sunrise_adjusted_daydate[2]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate3", daily_sunrise_adjusted_daydate[3]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate4", daily_sunrise_adjusted_daydate[4]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate5", daily_sunrise_adjusted_daydate[5]);
+            returnPage.addObject("daily_sunrise_adjusted_daydate6", daily_sunrise_adjusted_daydate[6]);
+
+
+
+
 
             // daily_sunset
             //returnPage.addObject("daily_sunset", daily_sunset);
@@ -1939,6 +1984,25 @@ public class GreetingController {
             returnPage.addObject("daily_sunset_adjusted5", daily_sunset_adjusted[5]);
             returnPage.addObject("daily_sunset_adjusted6", daily_sunset_adjusted[6]);
 
+            // daily_sunset_adjusted_hour
+            //returnPage.addObject("daily_sunset_adjusted_hour", daily_sunset_adjusted_hour);
+            returnPage.addObject("daily_sunset_adjusted_hour0", daily_sunset_adjusted_hour[0]);
+            returnPage.addObject("daily_sunset_adjusted_hour1", daily_sunset_adjusted_hour[1]);
+            returnPage.addObject("daily_sunset_adjusted_hour2", daily_sunset_adjusted_hour[2]);
+            returnPage.addObject("daily_sunset_adjusted_hour3", daily_sunset_adjusted_hour[3]);
+            returnPage.addObject("daily_sunset_adjusted_hour4", daily_sunset_adjusted_hour[4]);
+            returnPage.addObject("daily_sunset_adjusted_hour5", daily_sunset_adjusted_hour[5]);
+            returnPage.addObject("daily_sunset_adjusted_hour6", daily_sunset_adjusted_hour[6]);
+
+            // daily_sunset_adjusted_daydate
+            //returnPage.addObject("daily_sunset_adjusted_daydate", daily_sunset_adjusted_daydate);
+            returnPage.addObject("daily_sunset_adjusted_daydate0", daily_sunset_adjusted_daydate[0]);
+            returnPage.addObject("daily_sunset_adjusted_daydate1", daily_sunset_adjusted_daydate[1]);
+            returnPage.addObject("daily_sunset_adjusted_daydate2", daily_sunset_adjusted_daydate[2]);
+            returnPage.addObject("daily_sunset_adjusted_daydate3", daily_sunset_adjusted_daydate[3]);
+            returnPage.addObject("daily_sunset_adjusted_daydate4", daily_sunset_adjusted_daydate[4]);
+            returnPage.addObject("daily_sunset_adjusted_daydate5", daily_sunset_adjusted_daydate[5]);
+            returnPage.addObject("daily_sunset_adjusted_daydate6", daily_sunset_adjusted_daydate[6]);
 
 
 
@@ -2171,6 +2235,17 @@ public class GreetingController {
             returnPage.addObject("daily_pop6", daily_pop[6]);
 
 
+            // daily_pop_adjusted
+            // returnPage.addObject("daily_pop_adjusted", daily_pop_adjusted);
+            returnPage.addObject("daily_pop_adjusted0", daily_pop_adjusted[0]);
+            returnPage.addObject("daily_pop_adjusted1", daily_pop_adjusted[1]);
+            returnPage.addObject("daily_pop_adjusted2", daily_pop_adjusted[2]);
+            returnPage.addObject("daily_pop_adjusted3", daily_pop_adjusted[3]);
+            returnPage.addObject("daily_pop_adjusted4", daily_pop_adjusted[4]);
+            returnPage.addObject("daily_pop_adjusted5", daily_pop_adjusted[5]);
+            returnPage.addObject("daily_pop_adjusted6", daily_pop_adjusted[6]);
+
+
             //returnPage.addObject("daily_rain", daily_rain);
 
             // daily_uvi
@@ -2190,16 +2265,11 @@ public class GreetingController {
 
         } catch (
 
-        IOException e) {
+                IOException e) {
             System.out.println(e.getMessage());
         }
 
         return returnPage;
+
     }
-
-
-
-
-
-
 }
