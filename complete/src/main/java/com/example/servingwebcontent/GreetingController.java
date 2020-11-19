@@ -44,17 +44,17 @@ public class GreetingController {
 
     // Time formatting functions
 
-    public static String getDayDate(int unixSeconds){
+    public static String getDayDate(long unixSeconds){
 
-        Date date = new java.util.Date(unixSeconds*1000L);
+        Date date = new java.util.Date(unixSeconds * 1000L);
         SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMM-dd EEEE");
         String newFormat = sdf.format(date);
         return newFormat;
     }
 
-    public static String getHour(int unixSeconds){
+    public static String getHour(long unixSeconds){
 
-        Date date = new java.util.Date(unixSeconds*1000L);
+        Date date = new java.util.Date(unixSeconds * 1000L);
         SimpleDateFormat sdf = new java.text.SimpleDateFormat("hh:mm aa");
         String newFormat = sdf.format(date);
         return newFormat;
@@ -1316,12 +1316,11 @@ public class GreetingController {
 
             int current_dt = JSONObject_current.getInt("dt");
             int current_dt_adjusted = current_dt + timezone_offset;
+            String current_dt_adjusted_daydate = getDayDate(current_dt_adjusted);
+            String current_dt_adjusted_hour = getHour(current_dt_adjusted);
 
             int dumb_current_dt_adjusted = current_dt_adjusted + 18000;
             String dumb_current_dt_adjusted_hour = getHour(dumb_current_dt_adjusted);
-
-            String current_dt_adjusted_daydate = getDayDate(current_dt_adjusted);
-            String current_dt_adjusted_hour = getHour(current_dt_adjusted);
 
             int current_sunrise = JSONObject_current.getInt("sunrise");
             int current_sunrise_adjusted = current_sunrise + timezone_offset;
