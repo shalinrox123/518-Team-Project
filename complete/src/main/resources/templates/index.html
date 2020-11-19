@@ -19,7 +19,7 @@
         function showPosition(position)
         {
         	document.getElementById("demo").innerHTML="Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-        	location.href = "/location/" + position.coords.latitude + "," + position.coords.longitude;
+            location.href = "/location/" + position.coords.latitude + "," + position.coords.longitude;
         }
 
         getLocation()
