@@ -17,17 +17,933 @@
 
     <h1>In mainpage.HTML</h1>
 
-    <p>lat:</p>
-    <p th:text="${lat}"></p>
 
-    <p>longitude:</p>
-    <p th:text="${lon}"></p>
+    <!-- DATA TABLE FOR ALL DATA -->
+    <table>
+        <tr>
+            <th>name of data</th>
+            <th>[0]</th>
+            <th>[1]</th>
+            <th>[2]</th>
+            <th>[3]</th>
+            <th>[4]</th>
+            <th>[5]</th>
+            <th>[6]</th>
+            <th>[7]</th>
+            <th>[8]</th>
+            <th>[9]</th>
+        </tr>
 
-    <p>timezone:</p>
-    <p th:text="${timezone}"></p>
+        <tr>
+            <th>lat</th>
+            <th><p th:text="${lat}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
 
-    <p>timezone_offset:</p>
-    <p th:text="${timezone_offset}"></p>
+        <tr>
+            <th>lon</th>
+            <th><p th:text="${lon}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>timezone</th>
+            <th><p th:text="${timezone}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>timezone_offset</th>
+            <th><p th:text="${timezone_offset}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_dt</th>
+            <th><p th:text="${current_dt}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_dt_adjusted</th>
+            <th><p th:text="${current_dt_adjusted}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_sunrise</th>
+            <th><p th:text="${current_sunrise}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_sunrise_adjusted</th>
+            <th><p th:text="${current_sunrise_adjusted}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_sunset</th>
+            <th><p th:text="${current_sunset}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_sunset_adjusted</th>
+            <th><p th:text="${current_sunset_adjusted}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_temp</th>
+            <th><p th:text="${current_temp}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_feels_like</th>
+            <th><p th:text="${current_feels_like}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_pressure</th>
+            <th><p th:text="${current_pressure}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_humidity</th>
+            <th><p th:text="${current_humidity}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_dew_point</th>
+            <th><p th:text="${current_dew_point}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_uvi</th>
+            <th><p th:text="${current_uvi}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_clouds</th>
+            <th><p th:text="${current_clouds}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_visibility</th>
+            <th><p th:text="${current_visibility}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_wind_speed</th>
+            <th><p th:text="${current_wind_speed}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>current_wind_deg</th>
+            <th><p th:text="${current_wind_deg}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+        <tr>
+            <th>hourly_dt</th>
+            <th><p th:text="${hourly_dt0}"></p></th>
+            <th><p th:text="${hourly_dt1}"></p></th>
+            <th><p th:text="${hourly_dt2}"></p></th>
+            <th><p th:text="${hourly_dt3}"></p></th>
+            <th><p th:text="${hourly_dt4}"></p></th>
+            <th><p th:text="${hourly_dt5}"></p></th>
+            <th><p th:text="${hourly_dt6}"></p></th>
+            <th><p th:text="${hourly_dt7}"></p></th>
+            <th><p th:text="${hourly_dt8}"></p></th>
+            <th><p th:text="${hourly_dt9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_dt_adjusted</th>
+            <th><p th:text="${hourly_dt_adjusted0}"></p></th>
+            <th><p th:text="${hourly_dt_adjusted1}"></p></th>
+            <th><p th:text="${hourly_dt_adjusted2}"></p></th>
+            <th><p th:text="${hourly_dt_adjusted3}"></p></th>
+            <th><p th:text="${hourly_dt_adjusted4}"></p></th>
+            <th><p th:text="${hourly_dt_adjusted5}"></p></th>
+            <th><p th:text="${hourly_dt_adjusted6}"></p></th>
+            <th><p th:text="${hourly_dt_adjusted7}"></p></th>
+            <th><p th:text="${hourly_dt_adjusted8}"></p></th>
+            <th><p th:text="${hourly_dt_adjusted9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_temp</th>
+            <th><p th:text="${hourly_temp0}"></p></th>
+            <th><p th:text="${hourly_temp1}"></p></th>
+            <th><p th:text="${hourly_temp2}"></p></th>
+            <th><p th:text="${hourly_temp3}"></p></th>
+            <th><p th:text="${hourly_temp4}"></p></th>
+            <th><p th:text="${hourly_temp5}"></p></th>
+            <th><p th:text="${hourly_temp6}"></p></th>
+            <th><p th:text="${hourly_temp7}"></p></th>
+            <th><p th:text="${hourly_temp8}"></p></th>
+            <th><p th:text="${hourly_temp9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_feels_like</th>
+            <th><p th:text="${hourly_feels_like0}"></p></th>
+            <th><p th:text="${hourly_feels_like1}"></p></th>
+            <th><p th:text="${hourly_feels_like2}"></p></th>
+            <th><p th:text="${hourly_feels_like3}"></p></th>
+            <th><p th:text="${hourly_feels_like4}"></p></th>
+            <th><p th:text="${hourly_feels_like5}"></p></th>
+            <th><p th:text="${hourly_feels_like6}"></p></th>
+            <th><p th:text="${hourly_feels_like7}"></p></th>
+            <th><p th:text="${hourly_feels_like8}"></p></th>
+            <th><p th:text="${hourly_feels_like9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_pressure</th>
+            <th><p th:text="${hourly_pressure0}"></p></th>
+            <th><p th:text="${hourly_pressure1}"></p></th>
+            <th><p th:text="${hourly_pressure2}"></p></th>
+            <th><p th:text="${hourly_pressure3}"></p></th>
+            <th><p th:text="${hourly_pressure4}"></p></th>
+            <th><p th:text="${hourly_pressure5}"></p></th>
+            <th><p th:text="${hourly_pressure6}"></p></th>
+            <th><p th:text="${hourly_pressure7}"></p></th>
+            <th><p th:text="${hourly_pressure8}"></p></th>
+            <th><p th:text="${hourly_pressure9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_humidity</th>
+            <th><p th:text="${hourly_humidity0}"></p></th>
+            <th><p th:text="${hourly_humidity1}"></p></th>
+            <th><p th:text="${hourly_humidity2}"></p></th>
+            <th><p th:text="${hourly_humidity3}"></p></th>
+            <th><p th:text="${hourly_humidity4}"></p></th>
+            <th><p th:text="${hourly_humidity5}"></p></th>
+            <th><p th:text="${hourly_humidity6}"></p></th>
+            <th><p th:text="${hourly_humidity7}"></p></th>
+            <th><p th:text="${hourly_humidity8}"></p></th>
+            <th><p th:text="${hourly_humidity9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_dew_point</th>
+            <th><p th:text="${hourly_dew_point0}"></p></th>
+            <th><p th:text="${hourly_dew_point1}"></p></th>
+            <th><p th:text="${hourly_dew_point2}"></p></th>
+            <th><p th:text="${hourly_dew_point3}"></p></th>
+            <th><p th:text="${hourly_dew_point4}"></p></th>
+            <th><p th:text="${hourly_dew_point5}"></p></th>
+            <th><p th:text="${hourly_dew_point6}"></p></th>
+            <th><p th:text="${hourly_dew_point7}"></p></th>
+            <th><p th:text="${hourly_dew_point8}"></p></th>
+            <th><p th:text="${hourly_dew_point9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_clouds</th>
+            <th><p th:text="${hourly_clouds0}"></p></th>
+            <th><p th:text="${hourly_clouds1}"></p></th>
+            <th><p th:text="${hourly_clouds2}"></p></th>
+            <th><p th:text="${hourly_clouds3}"></p></th>
+            <th><p th:text="${hourly_clouds4}"></p></th>
+            <th><p th:text="${hourly_clouds5}"></p></th>
+            <th><p th:text="${hourly_clouds6}"></p></th>
+            <th><p th:text="${hourly_clouds7}"></p></th>
+            <th><p th:text="${hourly_clouds8}"></p></th>
+            <th><p th:text="${hourly_clouds9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_visibility</th>
+            <th><p th:text="${hourly_visibility0}"></p></th>
+            <th><p th:text="${hourly_visibility1}"></p></th>
+            <th><p th:text="${hourly_visibility2}"></p></th>
+            <th><p th:text="${hourly_visibility3}"></p></th>
+            <th><p th:text="${hourly_visibility4}"></p></th>
+            <th><p th:text="${hourly_visibility5}"></p></th>
+            <th><p th:text="${hourly_visibility6}"></p></th>
+            <th><p th:text="${hourly_visibility7}"></p></th>
+            <th><p th:text="${hourly_visibility8}"></p></th>
+            <th><p th:text="${hourly_visibility9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_wind_speed</th>
+            <th><p th:text="${hourly_wind_speed0}"></p></th>
+            <th><p th:text="${hourly_wind_speed1}"></p></th>
+            <th><p th:text="${hourly_wind_speed2}"></p></th>
+            <th><p th:text="${hourly_wind_speed3}"></p></th>
+            <th><p th:text="${hourly_wind_speed4}"></p></th>
+            <th><p th:text="${hourly_wind_speed5}"></p></th>
+            <th><p th:text="${hourly_wind_speed6}"></p></th>
+            <th><p th:text="${hourly_wind_speed7}"></p></th>
+            <th><p th:text="${hourly_wind_speed8}"></p></th>
+            <th><p th:text="${hourly_wind_speed9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_wind_deg</th>
+            <th><p th:text="${hourly_wind_deg0}"></p></th>
+            <th><p th:text="${hourly_wind_deg1}"></p></th>
+            <th><p th:text="${hourly_wind_deg2}"></p></th>
+            <th><p th:text="${hourly_wind_deg3}"></p></th>
+            <th><p th:text="${hourly_wind_deg4}"></p></th>
+            <th><p th:text="${hourly_wind_deg5}"></p></th>
+            <th><p th:text="${hourly_wind_deg6}"></p></th>
+            <th><p th:text="${hourly_wind_deg7}"></p></th>
+            <th><p th:text="${hourly_wind_deg8}"></p></th>
+            <th><p th:text="${hourly_wind_deg9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_weather_id</th>
+            <th><p th:text="${hourly_weather_id0}"></p></th>
+            <th><p th:text="${hourly_weather_id1}"></p></th>
+            <th><p th:text="${hourly_weather_id2}"></p></th>
+            <th><p th:text="${hourly_weather_id3}"></p></th>
+            <th><p th:text="${hourly_weather_id4}"></p></th>
+            <th><p th:text="${hourly_weather_id5}"></p></th>
+            <th><p th:text="${hourly_weather_id6}"></p></th>
+            <th><p th:text="${hourly_weather_id7}"></p></th>
+            <th><p th:text="${hourly_weather_id8}"></p></th>
+            <th><p th:text="${hourly_weather_id9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_weather_main</th>
+            <th><p th:text="${hourly_weather_main0}"></p></th>
+            <th><p th:text="${hourly_weather_main1}"></p></th>
+            <th><p th:text="${hourly_weather_main2}"></p></th>
+            <th><p th:text="${hourly_weather_main3}"></p></th>
+            <th><p th:text="${hourly_weather_main4}"></p></th>
+            <th><p th:text="${hourly_weather_main5}"></p></th>
+            <th><p th:text="${hourly_weather_main6}"></p></th>
+            <th><p th:text="${hourly_weather_main7}"></p></th>
+            <th><p th:text="${hourly_weather_main8}"></p></th>
+            <th><p th:text="${hourly_weather_main9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_weather_description</th>
+            <th><p th:text="${hourly_weather_description0}"></p></th>
+            <th><p th:text="${hourly_weather_description1}"></p></th>
+            <th><p th:text="${hourly_weather_description2}"></p></th>
+            <th><p th:text="${hourly_weather_description3}"></p></th>
+            <th><p th:text="${hourly_weather_description4}"></p></th>
+            <th><p th:text="${hourly_weather_description5}"></p></th>
+            <th><p th:text="${hourly_weather_description6}"></p></th>
+            <th><p th:text="${hourly_weather_description7}"></p></th>
+            <th><p th:text="${hourly_weather_description8}"></p></th>
+            <th><p th:text="${hourly_weather_description9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_weather_icon</th>
+            <th><p th:text="${hourly_weather_icon0}"></p></th>
+            <th><p th:text="${hourly_weather_icon1}"></p></th>
+            <th><p th:text="${hourly_weather_icon2}"></p></th>
+            <th><p th:text="${hourly_weather_icon3}"></p></th>
+            <th><p th:text="${hourly_weather_icon4}"></p></th>
+            <th><p th:text="${hourly_weather_icon5}"></p></th>
+            <th><p th:text="${hourly_weather_icon6}"></p></th>
+            <th><p th:text="${hourly_weather_icon7}"></p></th>
+            <th><p th:text="${hourly_weather_icon8}"></p></th>
+            <th><p th:text="${hourly_weather_icon9}"></p></th>
+        </tr>
+
+        <tr>
+            <th>hourly_pop</th>
+            <th><p th:text="${hourly_pop0}"></p></th>
+            <th><p th:text="${hourly_pop1}"></p></th>
+            <th><p th:text="${hourly_pop2}"></p></th>
+            <th><p th:text="${hourly_pop3}"></p></th>
+            <th><p th:text="${hourly_pop4}"></p></th>
+            <th><p th:text="${hourly_pop5}"></p></th>
+            <th><p th:text="${hourly_pop6}"></p></th>
+            <th><p th:text="${hourly_pop7}"></p></th>
+            <th><p th:text="${hourly_pop8}"></p></th>
+            <th><p th:text="${hourly_pop9}"></p></th>
+        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+        <tr>
+            <th>daily_dt</th>
+            <th><p th:text="${daily_dt0}"></p></th>
+            <th><p th:text="${daily_dt1}"></p></th>
+            <th><p th:text="${daily_dt2}"></p></th>
+            <th><p th:text="${daily_dt3}"></p></th>
+            <th><p th:text="${daily_dt4}"></p></th>
+            <th><p th:text="${daily_dt5}"></p></th>
+            <th><p th:text="${daily_dt6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_dt_adjusted</th>
+            <th><p th:text="${daily_dt_adjusted0}"></p></th>
+            <th><p th:text="${daily_dt_adjusted1}"></p></th>
+            <th><p th:text="${daily_dt_adjusted2}"></p></th>
+            <th><p th:text="${daily_dt_adjusted3}"></p></th>
+            <th><p th:text="${daily_dt_adjusted4}"></p></th>
+            <th><p th:text="${daily_dt_adjusted5}"></p></th>
+            <th><p th:text="${daily_dt_adjusted6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_sunrise</th>
+            <th><p th:text="${daily_sunrise0}"></p></th>
+            <th><p th:text="${daily_sunrise1}"></p></th>
+            <th><p th:text="${daily_sunrise2}"></p></th>
+            <th><p th:text="${daily_sunrise3}"></p></th>
+            <th><p th:text="${daily_sunrise4}"></p></th>
+            <th><p th:text="${daily_sunrise5}"></p></th>
+            <th><p th:text="${daily_sunrise6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_sunrise_adjusted</th>
+            <th><p th:text="${daily_sunrise_adjusted0}"></p></th>
+            <th><p th:text="${daily_sunrise_adjusted1}"></p></th>
+            <th><p th:text="${daily_sunrise_adjusted2}"></p></th>
+            <th><p th:text="${daily_sunrise_adjusted3}"></p></th>
+            <th><p th:text="${daily_sunrise_adjusted4}"></p></th>
+            <th><p th:text="${daily_sunrise_adjusted5}"></p></th>
+            <th><p th:text="${daily_sunrise_adjusted6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_sunset</th>
+            <th><p th:text="${daily_sunset0}"></p></th>
+            <th><p th:text="${daily_sunset1}"></p></th>
+            <th><p th:text="${daily_sunset2}"></p></th>
+            <th><p th:text="${daily_sunset3}"></p></th>
+            <th><p th:text="${daily_sunset4}"></p></th>
+            <th><p th:text="${daily_sunset5}"></p></th>
+            <th><p th:text="${daily_sunset6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_sunset_adjusted</th>
+            <th><p th:text="${daily_sunset_adjusted0}"></p></th>
+            <th><p th:text="${daily_sunset_adjusted1}"></p></th>
+            <th><p th:text="${daily_sunset_adjusted2}"></p></th>
+            <th><p th:text="${daily_sunset_adjusted3}"></p></th>
+            <th><p th:text="${daily_sunset_adjusted4}"></p></th>
+            <th><p th:text="${daily_sunset_adjusted5}"></p></th>
+            <th><p th:text="${daily_sunset_adjusted6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_temp_day</th>
+            <th><p th:text="${daily_temp_day0}"></p></th>
+            <th><p th:text="${daily_temp_day1}"></p></th>
+            <th><p th:text="${daily_temp_day2}"></p></th>
+            <th><p th:text="${daily_temp_day3}"></p></th>
+            <th><p th:text="${daily_temp_day4}"></p></th>
+            <th><p th:text="${daily_temp_day5}"></p></th>
+            <th><p th:text="${daily_temp_day6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_temp_min</th>
+            <th><p th:text="${daily_temp_min0}"></p></th>
+            <th><p th:text="${daily_temp_min1}"></p></th>
+            <th><p th:text="${daily_temp_min2}"></p></th>
+            <th><p th:text="${daily_temp_min3}"></p></th>
+            <th><p th:text="${daily_temp_min4}"></p></th>
+            <th><p th:text="${daily_temp_min5}"></p></th>
+            <th><p th:text="${daily_temp_min6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_temp_max</th>
+            <th><p th:text="${daily_temp_max0}"></p></th>
+            <th><p th:text="${daily_temp_max1}"></p></th>
+            <th><p th:text="${daily_temp_max2}"></p></th>
+            <th><p th:text="${daily_temp_max3}"></p></th>
+            <th><p th:text="${daily_temp_max4}"></p></th>
+            <th><p th:text="${daily_temp_max5}"></p></th>
+            <th><p th:text="${daily_temp_max6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_temp_night</th>
+            <th><p th:text="${daily_temp_night0}"></p></th>
+            <th><p th:text="${daily_temp_night1}"></p></th>
+            <th><p th:text="${daily_temp_night2}"></p></th>
+            <th><p th:text="${daily_temp_night3}"></p></th>
+            <th><p th:text="${daily_temp_night4}"></p></th>
+            <th><p th:text="${daily_temp_night5}"></p></th>
+            <th><p th:text="${daily_temp_night6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_temp_eve</th>
+            <th><p th:text="${daily_temp_eve0}"></p></th>
+            <th><p th:text="${daily_temp_eve1}"></p></th>
+            <th><p th:text="${daily_temp_eve2}"></p></th>
+            <th><p th:text="${daily_temp_eve3}"></p></th>
+            <th><p th:text="${daily_temp_eve4}"></p></th>
+            <th><p th:text="${daily_temp_eve5}"></p></th>
+            <th><p th:text="${daily_temp_eve6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_temp_morn</th>
+            <th><p th:text="${daily_temp_morn0}"></p></th>
+            <th><p th:text="${daily_temp_morn1}"></p></th>
+            <th><p th:text="${daily_temp_morn2}"></p></th>
+            <th><p th:text="${daily_temp_morn3}"></p></th>
+            <th><p th:text="${daily_temp_morn4}"></p></th>
+            <th><p th:text="${daily_temp_morn5}"></p></th>
+            <th><p th:text="${daily_temp_morn6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_feels_like_day</th>
+            <th><p th:text="${daily_feels_like_day0}"></p></th>
+            <th><p th:text="${daily_feels_like_day1}"></p></th>
+            <th><p th:text="${daily_feels_like_day2}"></p></th>
+            <th><p th:text="${daily_feels_like_day3}"></p></th>
+            <th><p th:text="${daily_feels_like_day4}"></p></th>
+            <th><p th:text="${daily_feels_like_day5}"></p></th>
+            <th><p th:text="${daily_feels_like_day6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_feels_like_night</th>
+            <th><p th:text="${daily_feels_like_night0}"></p></th>
+            <th><p th:text="${daily_feels_like_night1}"></p></th>
+            <th><p th:text="${daily_feels_like_night2}"></p></th>
+            <th><p th:text="${daily_feels_like_night3}"></p></th>
+            <th><p th:text="${daily_feels_like_night4}"></p></th>
+            <th><p th:text="${daily_feels_like_night5}"></p></th>
+            <th><p th:text="${daily_feels_like_night6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_feels_like_eve</th>
+            <th><p th:text="${daily_feels_like_eve0}"></p></th>
+            <th><p th:text="${daily_feels_like_eve1}"></p></th>
+            <th><p th:text="${daily_feels_like_eve2}"></p></th>
+            <th><p th:text="${daily_feels_like_eve3}"></p></th>
+            <th><p th:text="${daily_feels_like_eve4}"></p></th>
+            <th><p th:text="${daily_feels_like_eve5}"></p></th>
+            <th><p th:text="${daily_feels_like_eve6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_feels_like_morn</th>
+            <th><p th:text="${daily_feels_like_morn0}"></p></th>
+            <th><p th:text="${daily_feels_like_morn1}"></p></th>
+            <th><p th:text="${daily_feels_like_morn2}"></p></th>
+            <th><p th:text="${daily_feels_like_morn3}"></p></th>
+            <th><p th:text="${daily_feels_like_morn4}"></p></th>
+            <th><p th:text="${daily_feels_like_morn5}"></p></th>
+            <th><p th:text="${daily_feels_like_morn6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_pressure</th>
+            <th><p th:text="${daily_pressure0}"></p></th>
+            <th><p th:text="${daily_pressure1}"></p></th>
+            <th><p th:text="${daily_pressure2}"></p></th>
+            <th><p th:text="${daily_pressure3}"></p></th>
+            <th><p th:text="${daily_pressure4}"></p></th>
+            <th><p th:text="${daily_pressure5}"></p></th>
+            <th><p th:text="${daily_pressure6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_humidity</th>
+            <th><p th:text="${daily_humidity0}"></p></th>
+            <th><p th:text="${daily_humidity1}"></p></th>
+            <th><p th:text="${daily_humidity2}"></p></th>
+            <th><p th:text="${daily_humidity3}"></p></th>
+            <th><p th:text="${daily_humidity4}"></p></th>
+            <th><p th:text="${daily_humidity5}"></p></th>
+            <th><p th:text="${daily_humidity6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_dew_point</th>
+            <th><p th:text="${daily_dew_point0}"></p></th>
+            <th><p th:text="${daily_dew_point1}"></p></th>
+            <th><p th:text="${daily_dew_point2}"></p></th>
+            <th><p th:text="${daily_dew_point3}"></p></th>
+            <th><p th:text="${daily_dew_point4}"></p></th>
+            <th><p th:text="${daily_dew_point5}"></p></th>
+            <th><p th:text="${daily_dew_point6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_wind_speed</th>
+            <th><p th:text="${daily_wind_speed0}"></p></th>
+            <th><p th:text="${daily_wind_speed1}"></p></th>
+            <th><p th:text="${daily_wind_speed2}"></p></th>
+            <th><p th:text="${daily_wind_speed3}"></p></th>
+            <th><p th:text="${daily_wind_speed4}"></p></th>
+            <th><p th:text="${daily_wind_speed5}"></p></th>
+            <th><p th:text="${daily_wind_speed6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_wind_deg</th>
+            <th><p th:text="${daily_wind_deg0}"></p></th>
+            <th><p th:text="${daily_wind_deg1}"></p></th>
+            <th><p th:text="${daily_wind_deg2}"></p></th>
+            <th><p th:text="${daily_wind_deg3}"></p></th>
+            <th><p th:text="${daily_wind_deg4}"></p></th>
+            <th><p th:text="${daily_wind_deg5}"></p></th>
+            <th><p th:text="${daily_wind_deg6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_weather_id</th>
+            <th><p th:text="${daily_weather_id0}"></p></th>
+            <th><p th:text="${daily_weather_id1}"></p></th>
+            <th><p th:text="${daily_weather_id2}"></p></th>
+            <th><p th:text="${daily_weather_id3}"></p></th>
+            <th><p th:text="${daily_weather_id4}"></p></th>
+            <th><p th:text="${daily_weather_id5}"></p></th>
+            <th><p th:text="${daily_weather_id6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_weather_main</th>
+            <th><p th:text="${daily_weather_main0}"></p></th>
+            <th><p th:text="${daily_weather_main1}"></p></th>
+            <th><p th:text="${daily_weather_main2}"></p></th>
+            <th><p th:text="${daily_weather_main3}"></p></th>
+            <th><p th:text="${daily_weather_main4}"></p></th>
+            <th><p th:text="${daily_weather_main5}"></p></th>
+            <th><p th:text="${daily_weather_main6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_weather_description</th>
+            <th><p th:text="${daily_weather_description0}"></p></th>
+            <th><p th:text="${daily_weather_description1}"></p></th>
+            <th><p th:text="${daily_weather_description2}"></p></th>
+            <th><p th:text="${daily_weather_description3}"></p></th>
+            <th><p th:text="${daily_weather_description4}"></p></th>
+            <th><p th:text="${daily_weather_description5}"></p></th>
+            <th><p th:text="${daily_weather_description6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_clouds</th>
+            <th><p th:text="${daily_clouds0}"></p></th>
+            <th><p th:text="${daily_clouds1}"></p></th>
+            <th><p th:text="${daily_clouds2}"></p></th>
+            <th><p th:text="${daily_clouds3}"></p></th>
+            <th><p th:text="${daily_clouds4}"></p></th>
+            <th><p th:text="${daily_clouds5}"></p></th>
+            <th><p th:text="${daily_clouds6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_pop</th>
+            <th><p th:text="${daily_pop0}"></p></th>
+            <th><p th:text="${daily_pop1}"></p></th>
+            <th><p th:text="${daily_pop2}"></p></th>
+            <th><p th:text="${daily_pop3}"></p></th>
+            <th><p th:text="${daily_pop4}"></p></th>
+            <th><p th:text="${daily_pop5}"></p></th>
+            <th><p th:text="${daily_pop6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+        <tr>
+            <th>daily_uvi</th>
+            <th><p th:text="${daily_uvi0}"></p></th>
+            <th><p th:text="${daily_uvi1}"></p></th>
+            <th><p th:text="${daily_uvi2}"></p></th>
+            <th><p th:text="${daily_uvi3}"></p></th>
+            <th><p th:text="${daily_uvi4}"></p></th>
+            <th><p th:text="${daily_uvi5}"></p></th>
+            <th><p th:text="${daily_uvi6}"></p></th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+
+
+
+
+    </table>
+
+
 
     <!--
     <p id="demo">Getting Users Location...</p>
