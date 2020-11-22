@@ -7,6 +7,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  /*background-image: url(../../assets/img/cloud-background.jpg);*/
 }
 
 .imgBx {
@@ -53,4 +54,29 @@ h4 {
   color: black;
 }
 
+.product-small {
+  /*height: 550px;*/
+  padding-top: 40px;
+  margin: 0 0 10px 10px;
+  text-align: center;
+}
 
+.sundial {
+}
+
+.h3, h3 {
+  font-size: 19px;
+}
+
+#sams-speech-bubble-text {
+  position: absolute;
+  top: 74%;
+  left: 39%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+
+#snowman {
+  text-align: center;
+  color: white;
+}

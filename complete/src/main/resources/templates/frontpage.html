@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -17,20 +16,20 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
-<body onload="resetSelection()">
-<nav class="navbar navbar-dark navbar-expand-md bg-info shadow">
-    <div class="container"><a class="navbar-brand" href="#">Whether?</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse"
-             id="navcol-1">
+<body onload="resetSelection()" style="background: url(&quot;/img/Login_background.png&quot;);background-size: cover;padding-right: 6px;padding-left: 6px;padding-top: 7px;padding-bottom: 6px;">
+<nav class="navbar navbar-dark navbar-expand-md bg-info shadow" style="height: 56px;">
+    <div class="container"><i class="fas fa-cloud-moon-rain" style="color: rgb(255,255,255);"></i><a class="navbar-brand" href="#">&nbsp;Whether?</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div
+                class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link active" href="#">Log In&nbsp;<i class="fa fa-arrow-circle-o-right"></i></a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Register</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Log Out&nbsp;<i class="fa fa-arrow-circle-o-right"></i></a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Chat</a></li>
                 <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="container-fluid">
+<div class="container-fluid" style="height: 141px;">
     <div class="col">
         <div class="row">
             <div class="col">
@@ -40,84 +39,70 @@
         <div class="row">
             <div class="col">
                 <p class="text-center">Location: Detected!</p>
+                <p class="text-center" id="city-name-header-title" style="text-shadow: 12px 0px 2px rgb(205,215,225);" th:text="${cityname}"></p>
+                <p class="text-center" style="font-size: 14px;line-height: 21px;height: 20px;">Not your location? Click here.</p>
+
+                <select id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+                    <option value="" disabled selected>Choose State</option>
+                    <option></option>
+                </select>
+                <select id="citySelect" size="1" onchange="displaySelected()">
+                    <option value="" disabled selected>Choose City</option>
+                    <option></option>
+                </select>
+                <br><p id="demo"></p>
+                <br><p id="csv"></p>
+
             </div>
         </div>
     </div>
 </div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-4"><img class="img-fluid" src="/img/Screen%20Shot%202020-11-17%20at%204.36.23%20PM.png"></div>
-        <div class="col-4">
-            <h1 class="text-center" id="city-name-header-title" style="text-shadow: 12px 0px 2px rgb(205,215,225);" th:text="${cityname}"></h1>
-            <p class="text-center" style="font-size: 14px;line-height: 21px;height: 20px;">Not your location? Click here.</p>
-
-            <select id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
-                <option value="" disabled selected>Choose State</option>
-                <option></option>
-            </select>
-            <select id="citySelect" size="1" onchange="displaySelected()">
-                <option value="" disabled selected>Choose City</option>
-                <option></option>
-            </select>
-            <br><p id="demo"></p>
-            <br><p id="csv"></p>
-
-        </div>
-        <div class="col-4">
-            <div class="row">
-                <div class="col-4">
-
-                </div>
-
-
-
-                <div class="col-8">
-
-                    <div class="table-responsive">
-                        <table class="table" id="the-table">
-                            <thead>
-                            <tr>
-                                <th class="text-right">Temperature:</th>
-                                <th th:text="${current_temp}"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-right">       Feels Like:</td>
-                                <td th:text="${current_feels_like}"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">  Rain Chance:</td>
-                                <td th:text="${hourly_pop0}"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-right"> Rel. Humidity:</td>
-                                <td th:text="${current_humidity}"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-right">   Wind Speed:</td>
-                                <td th:text="${current_wind_speed}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
+<div class="row weather-grid">
+    <div class="col-md-6">
+        <div id="sundial-card" class="product-small" style="height: 540px;background: url(&quot;/img/sundial-trans-35-percent.png&quot;) center / cover;box-shadow: 0px 0px 10px;">
+            <h4 style="color: rgb(255,255,255);"><strong>The Whether? Sundial:</strong></h4><img src="/img/whetherwheelwithlights.svg" style="width: 321px;height: 326px;"></div>
+        <div id="futurecast-card" class="product-small" style="background: url(&quot;/img/futurecast-blurry3.png&quot;) center / cover;height: 540px;box-shadow: 0px 0px 10px;">
+            <h4 style="margin: 0px;margin-top: 20px;"><strong>The Futurecast</strong></h4><a href=# id="future-cast"><img src="/img/ezgif.com-gif-maker.gif"></a>
+            <h3 class="sundial-subtext">See this week's weather!</h3>
         </div>
     </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col"><a href=# id="future-cast"><img src="/img/crystal-ball-300x300.gif"></a></div>
-        <div class="col">
-
+    <div class="col-md-6">
+        <div id="current-weather-card" class="product-small" style="height: 540px;background: url(&quot;/img/02d-transparent.png&quot;);background-size: cover;box-shadow: 0px 0px 10px;">
+            <h4 style="color: rgb(255,255,255);margin-bottom: 50px;"><strong>Current Weather:</strong></h4>
+            <div class="table-responsive table-borderless" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;padding-left: 0px;">
+                <table class="table table-striped table-bordered table-dark" id="the-table">
+                    <thead>
+                    <tr>
+                        <th>Temperature:</th>
+                        <th th:text="${current_temp}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="background: url(&quot;/img/thermometer-transparent45.png&quot;) center;">
+                        <td>Feels like:</td>
+                        <td th:text="${current_feels_like}"></td>
+                    </tr>
+                    <tr>
+                        <td>Rain Chance:</td>
+                        <td th:text="${hourly_pop0}"></td>
+                    </tr>
+                    <tr>
+                        <td>Rel. Humidity:</td>
+                        <td th:text="${current_humidity}"></td>
+                    </tr>
+                    <tr>
+                        <td>Wind Speed:</td>
+                        <td th:text="${current_wind_speed}"></td>>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col">
-            <div id="the-snowman" class="container">
-
-                <img src="/img/snowman-facts.png" onclick="generate()">
-                <p id="texty-text" class="centered">Hi! I'm Sam the Snowman! Click me to reveal #thefacts about the weather!</p>
+        <div id="sam-the-snowman-card" class="product-small" style="height: 540px;background: url(&quot;/img/sam-the-snowman-bg.png&quot;) center / cover;box-shadow: 0px 0px 10px;">
+            <h4 style="height: 36px;margin-top: 20px;"><strong>Sam the Snowman</strong></h4>
+            <div id="snowman" class="container"><img src="/img/sam-the-snowman-new.png" style="width: 725px;height: 414px;">
+                <p id="sams-speech-bubble-text" style="width: 349px;font-size: 15px;">aotenuh aotehu t ehut oteh utao tu eotuh<br>thaosenthuasnote tohetu aoeu a&nbsp; ao o o ou e&nbsp;<br>ntaoeuhta&nbsp; othheu&nbsp; ehe o o taoeu a htehu aoe<br>atnoestuaoetnu hhh eht&nbsp; toet uht euht th oeth eo<br>ntaentounteonuh
+                    aoethu&nbsp; ohe o et toeuh toeh uto&nbsp;<br>oeutoh u taohe taototo t otto to ttuhtehuothua<br>uoeu o o o uaeoae ua oe ou eou aoeu aoeu ao u</p>
             </div>
         </div>
     </div>
