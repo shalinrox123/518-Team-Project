@@ -213,6 +213,12 @@ function makeStates()
     }
     document.getElementById("countrySelect").innerHTML = citiesOptions;
 
+    var city_name = document.getElementById("city-name-header-title").textContent;
+    alert("New City Name : "+city_name);
+    var newLink = "/futurecast/city/"+city_name;
+    alert("New Link Formed : "+newLink);
+    document.getElementById("future-cast").setAttribute("href", newLink);
+    alert("Attributes Assigned");
 }
 
 function resetSelection()

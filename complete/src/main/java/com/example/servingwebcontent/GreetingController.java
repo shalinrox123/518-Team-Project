@@ -1291,6 +1291,23 @@ public class GreetingController {
         return page;
     }
 
+
+    @RequestMapping("/futurecast/city/{LOCATION}")
+    public ModelAndView get_weather_city_futurecast(@PathVariable String LOCATION) throws ParseException {
+
+        String latlon = getLatlonForCityName(LOCATION);
+
+        System.out.println("Location: " + LOCATION);
+        System.out.println("Latlon recieved for this location: " + latlon);
+
+        // Now call One Call API
+        ModelAndView page = getPageAndAddElementsLatlon(latlon);
+
+        page.setViewName("futurecast");
+
+        return page;
+    }
+
     @ResponseBody
     @RequestMapping("/location/{LATLON}")
     public ModelAndView get_weather_coordination(@PathVariable String LATLON) throws ParseException {
