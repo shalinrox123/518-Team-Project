@@ -55,10 +55,17 @@ public class GreetingController {
 
     public static String getHour(int unixSeconds, String tz){
 
-
-
         Date date = new java.util.Date(unixSeconds*1000L);
         SimpleDateFormat sdf = new java.text.SimpleDateFormat("hh:mm aa");
+        sdf.setTimeZone(java.util.TimeZone.getTimeZone(tz));
+        String newFormat = sdf.format(date);
+        return newFormat;
+    }
+
+    public static String getSundialHour(int unixSeconds, String tz){
+
+        Date date = new java.util.Date(unixSeconds*1000L);
+        SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH");
         sdf.setTimeZone(java.util.TimeZone.getTimeZone(tz));
         String newFormat = sdf.format(date);
         return newFormat;
@@ -162,11 +169,15 @@ public class GreetingController {
             int current_sunrise_adjusted = current_sunrise + timezone_offset;
             String current_sunrise_adjusted_daydate = getDayDate(current_sunrise, timezone);
             String current_sunrise_adjusted_hour = getHour(current_sunrise, timezone);
+            String current_sunrise_sundial = getSundialHour(current_sunrise, timezone);
+            System.out.println("current_sunrise_sundial: " + current_sunrise_sundial);
 
             int current_sunset = JSONObject_current.getInt("sunset");
             int current_sunset_adjusted = current_sunset + timezone_offset;
             String current_sunset_adjusted_daydate = getDayDate(current_sunset, timezone);
             String current_sunset_adjusted_hour = getHour(current_sunset, timezone);
+            String current_sunset_sundial = getSundialHour(current_sunset, timezone);
+            System.out.println("current_sunset_sundial: " + current_sunset_sundial);
 
             int current_temp = (int) JSONObject_current.getDouble("temp");
             int current_feels_like = (int) JSONObject_current.getDouble("feels_like");
@@ -399,19 +410,27 @@ public class GreetingController {
             // Current
             returnPage.addObject("current_dt", current_dt);
             returnPage.addObject("current_dt_adjusted", current_dt_adjusted);
+            System.out.println("current_dt_adjusted: " + current_dt_adjusted);
             returnPage.addObject("current_dt_adjusted_daydate", current_dt_adjusted_daydate);
             returnPage.addObject("current_dt_adjusted_hour", current_dt_adjusted_hour);
 
 
             returnPage.addObject("current_sunrise", current_sunrise);
             returnPage.addObject("current_sunrise_adjusted", current_sunrise_adjusted);
+            System.out.println("current_sunrise_adjusted: " + current_sunrise_adjusted);
             returnPage.addObject("current_sunrise_adjusted_daydate", current_sunrise_adjusted_daydate);
             returnPage.addObject("current_sunrise_adjusted_hour", current_sunrise_adjusted_hour);
+            returnPage.addObject("current_sunrise_sundial", current_sunrise_sundial);
+
 
             returnPage.addObject("current_sunset", current_sunset);
             returnPage.addObject("current_sunset_adjusted", current_sunset_adjusted);
+            System.out.println("current_sunset_adjusted: " + current_sunset_adjusted);
             returnPage.addObject("current_sunset_adjusted_daydate", current_sunset_adjusted_daydate);
             returnPage.addObject("current_sunset_adjusted_hour", current_sunset_adjusted_hour);
+            returnPage.addObject("current_sunset_sundial", current_sunset_sundial);
+
+
 
             returnPage.addObject("current_temp", current_temp);
             returnPage.addObject("current_feels_like", current_feels_like);
