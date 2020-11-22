@@ -42,6 +42,8 @@
             <div class="col">
                 <div class="row">
                     <p class="text-center">Location: Detected!</p>
+                    <h1 hidden id="sunrise_time" th:text="${current_sunrise_sundial}"></h1>
+                    <h1 hidden id="sunset_time" th:text="${current_sunset_sundial}"></h1>
                 </div>
                 <div class="row">
                     <h2 class="text-center" id="city-name-header-title" style="text-shadow: 12px 0px 2px rgb(205,215,225);" th:text="${cityname}"></h2>
@@ -85,7 +87,85 @@
 <div class="row weather-grid">
     <div class="col-md-6">
         <div id="sundial-card" class="product-small" style="height: 540px;background: url(&quot;/img/sundial-trans-35-percent.png&quot;) center / cover;box-shadow: 0px 0px 10px;">
-            <h4 style="color: rgb(255,255,255);"><strong>The Whether? Sundial:</strong></h4><img src="/img/whetherwheelwithlights.svg" style="width: 321px;height: 326px;"></div>
+            <h4 style="color: rgb(255,255,255);"><strong>The Whether? Sundial:</strong></h4>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457 399" style="width: 321px;height: 326px;">
+                <defs>
+                    <style>
+                        .a {
+                            fill: #e0dfd9;
+                        }
+
+                        .a, .b, .c, .d {
+                            stroke: #000;
+                            stroke-miterlimit: 10;
+                        }
+
+                        .b {
+                            fill: none;
+                        }
+
+                        .c {
+                            fill: #282823;
+                        }
+
+                        .d {
+                            fill: #fbff5f;
+                        }
+
+                        .e {
+                            font-size: 18px;
+                            font-family: MyriadPro-Regular, Myriad Pro;
+                        }
+
+                        .f {
+                            letter-spacing: 0em;
+                        }
+
+                        .g {
+                            letter-spacing: -0.01em;
+                        }
+                    </style>
+                </defs>
+                <title>whetherwheelwithlights</title>
+                <ellipse class="a" cx="228.5" cy="199.5" rx="228" ry="199"/>
+                <ellipse class="b" cx="228.5" cy="182.5" rx="223" ry="182"/>
+                <ellipse class="b" cx="223.5" cy="185.5" rx="141" ry="122"/>
+                <ellipse class="b" cx="223" cy="199.5" rx="136.5" ry="108"/>
+                <g>
+                    <ellipse id="0" class="d" cx="231.5" cy="342" rx="16" ry="11.5"/>
+                    <ellipse id="1" class="c" cx="186" cy="336" rx="15.5" ry="12.5"/>
+                    <ellipse id="2" class="c" cx="148.5" cy="325.5" rx="13" ry="11"/>
+                    <ellipse id="3" class="c" cx="115" cy="307.5" rx="14.5" ry="12"/>
+                    <ellipse id="4" class="c" cx="85.5" cy="279.5" rx="15" ry="11"/>
+                    <ellipse id="5" class="c" cx="59" cy="245" rx="16.5" ry="11.5"/>
+                    <ellipse id="6" class="c" cx="45.5" cy="203" rx="17" ry="12.5"/>
+                    <ellipse id="7" class="d" cx="48" cy="163" rx="14.5" ry="11.5"/>
+                    <ellipse id="8" class="d" cx="67" cy="126.5" rx="15.5" ry="11"/>
+                    <ellipse id="9" class="d" cx="91" cy="89" rx="15.5" ry="10.5"/>
+                    <ellipse id="10" class="d" cx="127.5" cy="59" rx="16" ry="11.5"/>
+                    <ellipse id="11" class="d" cx="175.5" cy="43" rx="14" ry="9.5"/>
+                    <ellipse id="12" class="d" cx="223.5" cy="36" rx="16" ry="11.5"/>
+                    <ellipse id="13" class="d" cx="273" cy="41" rx="14.5" ry="11.5"/>
+                    <ellipse id="14" class="d" cx="315" cy="57" rx="14.5" ry="9.5"/>
+                    <ellipse id="15" class="d" cx="352" cy="80" rx="12.5" ry="9.5"/>
+                    <ellipse id="16" class="d" cx="378.5" cy="101.5" rx="14" ry="10"/>
+                    <ellipse id="17" class="d" cx="392.5" cy="137.5" rx="14" ry="11"/>
+                    <ellipse id="18" class="d" cx="407.5" cy="179" rx="15" ry="11.5"/>
+                    <ellipse id="19" class="d" cx="401.5" cy="215" rx="15" ry="11.5"/>
+                    <ellipse id="20" class="d" cx="387" cy="246" rx="14.5" ry="11.5"/>
+                    <ellipse id="21" class="d" cx="363" cy="277.5" rx="15.5" ry="13"/>
+                    <ellipse id="22" class="d" cx="329" cy="307" rx="14.5" ry="11.5"/>
+                    <ellipse id="23" class="c" cx="286.5" cy="331" rx="14" ry="11.5"/>
+                    <text class="e" transform="translate(190 293.78)">MIDNIGHT</text>
+                    <text class="e" transform="translate(198.24 114.44)">NOON</text>
+                    <text class="e" transform="translate(98.51 208.17)">6 <tspan class="f" x="13.05" y="0">A</tspan><tspan x="23.99" y="0">M</tspan></text>
+                    <text class="e" transform="translate(302.3 202.96)">6 <tspan class="g" x="13.05" y="0">P</tspan><tspan x="22.41" y="0">M</tspan></text>
+                </g>
+            </svg>
+
+
+        </div>
         <div id="futurecast-card" class="product-small" style="background: url(&quot;/img/futurecast-blurry3.png&quot;) center / cover;height: 540px;box-shadow: 0px 0px 10px;">
 
             <h4 style="margin: 0px;margin-top: 20px;"><strong>The Futurecast</strong></h4><a href=# id="future-cast"><img src="/img/ezgif.com-gif-maker.gif"></a>
@@ -127,9 +207,8 @@
         </div>
         <div id="sam-the-snowman-card" class="product-small" style="height: 540px;background: url(&quot;/img/sam-the-snowman-bg.png&quot;) center / cover;box-shadow: 0px 0px 10px;">
             <h4 style="height: 36px;margin-top: 20px;"><strong>Sam the Snowman</strong></h4>
-            <div id="snowman" class="container"><img src="/img/sam-the-snowman-new.png" style="width: 725px;height: 414px;">
-                <p id="sams-speech-bubble-text" style="width: 349px;font-size: 15px;">aotenuh aotehu t ehut oteh utao tu eotuh<br>thaosenthuasnote tohetu aoeu a&nbsp; ao o o ou e&nbsp;<br>ntaoeuhta&nbsp; othheu&nbsp; ehe o o taoeu a htehu aoe<br>atnoestuaoetnu hhh eht&nbsp; toet uht euht th oeth eo<br>ntaentounteonuh
-                    aoethu&nbsp; ohe o et toeuh toeh uto&nbsp;<br>oeutoh u taohe taototo t otto to ttuhtehuothua<br>uoeu o o o uaeoae ua oe ou eou aoeu aoeu ao u</p>
+            <div id="snowman" class="container"><a href=# onclick="generate()"><img src="/img/sam-the-snowman-new.png" style="width: 725px;height: 414px;"></a>
+                <p id="sams-speech-bubble-text" style="width: 349px;font-size: 15px;">Hi! I'm Sam the Snowman! Click me to reveal #thefacts about the weather!</p>
             </div>
         </div>
     </div>
@@ -138,6 +217,61 @@
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/js/myjs.js"></script>
 <script src="/js/weatherfactssimpleversion.js"></script>
+
+    <script>
+        var sunrise = document.getElementById("sunrise_time").textContent;
+        var sunset = document.getElementById("sunset_time").textContent;
+
+        //var sunset = 19;
+        //var sunrise = 6;
+
+        var r1 = 254;
+        var g1 = 255;
+        var b1 = 63;
+
+        var r2 = 25;
+        var g2 = 26;
+        var b2 = 7;
+
+        var r_sunrise = 183;
+        var g_sunrise = 250;
+        var b_sunrise = 255;
+
+        var r_sunset = 255;
+        var g_sunset = 117;
+        var b_sunset = 64;
+
+
+        for (i = 0; i < 24; i++)
+        {
+            var x = document.getElementById(""+i);
+
+
+            if (i > sunrise && i < sunset)
+            {
+                x.style.fill = 'rgb(' + r1 + ', ' + g1 + ' , ' + b1 + ')';
+            }
+
+            else
+            {
+                x.style.fill = 'rgb(' + r2 + ', ' + g2 + ' , ' + b2 + ')';
+            }
+
+            if (i == sunrise)
+            {
+                x.style.fill = 'rgb(' + r_sunrise + ', ' + g_sunrise + ' , ' + b_sunrise + ')';
+            }
+
+            if (i == sunset)
+            {
+                x.style.fill = 'rgb(' + r_sunset + ', ' + g_sunset + ' , ' + b_sunset + ')';
+            }
+        }
+
+
+
+    </script>
+
 </body>
 
 </html>

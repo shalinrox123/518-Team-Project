@@ -42,16 +42,16 @@
   <ellipse class="b" cx="223.5" cy="185.5" rx="141" ry="122"/>
   <ellipse class="b" cx="223" cy="199.5" rx="136.5" ry="108"/>
   <g>
-    <ellipse id="00" class="d" cx="231.5" cy="342" rx="16" ry="11.5"/>
-    <ellipse id="01" class="c" cx="186" cy="336" rx="15.5" ry="12.5"/>
-    <ellipse id="02" class="c" cx="148.5" cy="325.5" rx="13" ry="11"/>
-    <ellipse id="03" class="c" cx="115" cy="307.5" rx="14.5" ry="12"/>
-    <ellipse id="04" class="c" cx="85.5" cy="279.5" rx="15" ry="11"/>
-    <ellipse id="05" class="c" cx="59" cy="245" rx="16.5" ry="11.5"/>
-    <ellipse id="06" class="c" cx="45.5" cy="203" rx="17" ry="12.5"/>
-    <ellipse id="07" class="d" cx="48" cy="163" rx="14.5" ry="11.5"/>
-    <ellipse id="08" class="d" cx="67" cy="126.5" rx="15.5" ry="11"/>
-    <ellipse id="09" class="d" cx="91" cy="89" rx="15.5" ry="10.5"/>
+    <ellipse id="0" class="d" cx="231.5" cy="342" rx="16" ry="11.5"/>
+    <ellipse id="1" class="c" cx="186" cy="336" rx="15.5" ry="12.5"/>
+    <ellipse id="2" class="c" cx="148.5" cy="325.5" rx="13" ry="11"/>
+    <ellipse id="3" class="c" cx="115" cy="307.5" rx="14.5" ry="12"/>
+    <ellipse id="4" class="c" cx="85.5" cy="279.5" rx="15" ry="11"/>
+    <ellipse id="5" class="c" cx="59" cy="245" rx="16.5" ry="11.5"/>
+    <ellipse id="6" class="c" cx="45.5" cy="203" rx="17" ry="12.5"/>
+    <ellipse id="7" class="d" cx="48" cy="163" rx="14.5" ry="11.5"/>
+    <ellipse id="8" class="d" cx="67" cy="126.5" rx="15.5" ry="11"/>
+    <ellipse id="9" class="d" cx="91" cy="89" rx="15.5" ry="10.5"/>
     <ellipse id="10" class="d" cx="127.5" cy="59" rx="16" ry="11.5"/>
     <ellipse id="11" class="d" cx="175.5" cy="43" rx="14" ry="9.5"/>
     <ellipse id="12" class="d" cx="223.5" cy="36" rx="16" ry="11.5"/>
