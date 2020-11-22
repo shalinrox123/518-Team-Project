@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
-<body>
+<body onload="resetSelection()" >
 <nav class="navbar navbar-dark navbar-expand-md bg-info shadow">
     <div class="container"><a class="navbar-brand" href="#">Whether?</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse"
@@ -49,7 +49,19 @@
         <div class="col-4"><img class="img-fluid" src="/img/Screen%20Shot%202020-11-17%20at%204.36.23%20PM.png"></div>
         <div class="col-4">
             <h1 class="text-center" id="city-name-header-title" style="text-shadow: 12px 0px 2px rgb(205,215,225);">Albany</h1>
-            <p class="text-center" style="font-size: 14px;line-height: 21px;height: 20px;"><a id="not-your-location-link" th:href="@{dropdown}">Not your location? Click here.</a></p>
+            <p class="text-center" style="font-size: 14px;line-height: 21px;height: 20px;">Not your location? Click here.</p>
+
+            <select id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+                <option value="" disabled selected>Choose State</option>
+                <option></option>
+            </select>
+            <select id="citySelect" size="1" onchange="displaySelected()">
+                <option value="" disabled selected>Choose City</option>
+                <option></option>
+            </select>
+            <br><p id="demo"></p>
+            <br><p id="csv"></p>
+
         </div>
         <div class="col-4">
             <div class="row">

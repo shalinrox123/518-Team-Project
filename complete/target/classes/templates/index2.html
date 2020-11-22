@@ -19,6 +19,8 @@
     function showPosition(position)
     {
         document.getElementById("demo").innerHTML="Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+
+
         location.href = "/location/futurecast/" + position.coords.latitude + "," + position.coords.longitude;
     }
 
