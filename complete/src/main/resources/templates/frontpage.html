@@ -29,40 +29,67 @@
         </div>
     </div>
 </nav>
+
+
 <div class="container-fluid" style="height: 141px;">
     <div class="col">
+
         <div class="row">
             <div class="col">
                 <h1 class="text-center" th:text="${current_dt_adjusted_hour}"></h1>
             </div>
+
+            <div class="col">
+                <div class="row">
+                    <p class="text-center">Location: Detected!</p>
+                </div>
+                <div class="row">
+                    <h2 class="text-center" id="city-name-header-title" style="text-shadow: 12px 0px 2px rgb(205,215,225);" th:text="${cityname}"></h2>
+                </div>
+            </div>
+
+
+            <div class="col">
+
+                <div class="row">
+                    <p class="text-center" style="font-size: 14px;line-height: 21px;height: 20px;">Not your location? Click here.</p>
+                </div>
+
+
+                <div class="row">
+                    <select id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
+                        <option value="" disabled selected>Choose State</option>
+                        <option></option>
+                    </select>
+                    <select id="citySelect" size="1" onchange="displaySelected()">
+                        <option value="" disabled selected>Choose City</option>
+                        <option></option>
+                    </select>
+                    <br><p id="demo"></p>
+                    <br><p id="csv"></p>
+                </div>
+
+
         </div>
+
+
         <div class="row">
             <div class="col">
-                <p class="text-center">Location: Detected!</p>
-                <p class="text-center" id="city-name-header-title" style="text-shadow: 12px 0px 2px rgb(205,215,225);" th:text="${cityname}"></p>
-                <p class="text-center" style="font-size: 14px;line-height: 21px;height: 20px;">Not your location? Click here.</p>
-
-                <select id="countrySelect" size="1" onchange="makeSubmenu(this.value)">
-                    <option value="" disabled selected>Choose State</option>
-                    <option></option>
-                </select>
-                <select id="citySelect" size="1" onchange="displaySelected()">
-                    <option value="" disabled selected>Choose City</option>
-                    <option></option>
-                </select>
-                <br><p id="demo"></p>
-                <br><p id="csv"></p>
 
             </div>
         </div>
     </div>
 </div>
+
+
 <div class="row weather-grid">
     <div class="col-md-6">
         <div id="sundial-card" class="product-small" style="height: 540px;background: url(&quot;/img/sundial-trans-35-percent.png&quot;) center / cover;box-shadow: 0px 0px 10px;">
             <h4 style="color: rgb(255,255,255);"><strong>The Whether? Sundial:</strong></h4><img src="/img/whetherwheelwithlights.svg" style="width: 321px;height: 326px;"></div>
         <div id="futurecast-card" class="product-small" style="background: url(&quot;/img/futurecast-blurry3.png&quot;) center / cover;height: 540px;box-shadow: 0px 0px 10px;">
+
             <h4 style="margin: 0px;margin-top: 20px;"><strong>The Futurecast</strong></h4><a href=# id="future-cast"><img src="/img/ezgif.com-gif-maker.gif"></a>
+
             <h3 class="sundial-subtext">See this week's weather!</h3>
         </div>
     </div>
