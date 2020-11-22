@@ -48,7 +48,7 @@
     <div class="row">
         <div class="col-4"><img class="img-fluid" src="/img/Screen%20Shot%202020-11-17%20at%204.36.23%20PM.png"></div>
         <div class="col-4">
-            <h1 class="text-center" id="city-name-header-title" style="text-shadow: 12px 0px 2px rgb(205,215,225);">Albany</h1>
+            <h1 class="text-center" id="city-name-header-title" style="text-shadow: 12px 0px 2px rgb(205,215,225);" th:text="${cityname}"></h1>
             <p class="text-center" style="font-size: 14px;line-height: 21px;height: 20px;">Not your location? Click here.</p>
 
             <select id="countrySelect" size="1" onchange="makeSubmenu(this.value)">

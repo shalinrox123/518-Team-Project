@@ -82,35 +82,61 @@ public class GreetingController {
         String LON = latlon.split(",")[1].trim();
 
         //String urlString = "http://api.openweathermap.org/data/2.5/weather?lat=" + LAT + "&lon=" + LON + "&appid=" + API_KEY + "&units=" + UNIT;
-        String urlString = "http://api.openweathermap.org/data/2.5/onecall?lat=" + LAT + "&lon=" + LON + "&appid=" + API_KEY + "&units=" + unit;
+        String oneCallUrlString = "http://api.openweathermap.org/data/2.5/onecall?lat=" + LAT + "&lon=" + LON + "&appid=" + API_KEY + "&units=" + unit;
+        String weatherDataUrlString = "http://api.openweathermap.org/data/2.5/weather?lat=" + LAT + "&lon=" + LON + "&appid=" +  API_KEY + "&units=" + unit;
 
 
-        StringBuilder stringBuilder = new StringBuilder();
+
+        StringBuilder oneCallStringBuilder = new StringBuilder();
+        StringBuilder weatherDataStringBuilder = new StringBuilder();
 
         String tempString = "";
 
         try {
-            URL url = new URL(urlString);
-            URLConnection conn = url.openConnection();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            URL url = new URL(oneCallUrlString);
+            URLConnection oneCallConn = url.openConnection();
+            BufferedReader oneCallRead = new BufferedReader(new InputStreamReader(oneCallConn.getInputStream()));
 
-            String json = "";
-            String line = "";
+            String oneCallJson = "";
+            String oneCallLine = "";
 
-            while ((line = rd.readLine()) != null) {
-                stringBuilder.append(line);
-                json += line;
+            while ((oneCallLine = oneCallRead.readLine()) != null) {
+                oneCallStringBuilder.append(oneCallLine);
+                oneCallJson += oneCallLine;
+            }
+            // ************** //
+            JSONObject JSONObject_oneCallAPIResponse = new JSONObject(oneCallJson);
+
+            double lon = JSONObject_oneCallAPIResponse.getDouble("lon");
+            double lat = JSONObject_oneCallAPIResponse.getDouble("lat");
+            String timezone = JSONObject_oneCallAPIResponse.getString("timezone");
+            System.out.println("timezone: " + timezone);
+            int timezone_offset = JSONObject_oneCallAPIResponse.getInt("timezone_offset");
+            System.out.println("timezone_offset: " + timezone_offset);
+
+
+
+
+
+            // We will also make a call to the Current Weather Data API with our lat and lon so that we know the city name
+            URL url2 = new URL(weatherDataUrlString);
+            URLConnection weatherDataConn = url2.openConnection();
+            BufferedReader weatherDataRead = new BufferedReader(new InputStreamReader(weatherDataConn.getInputStream()));
+
+            String weatherDataJson = "";
+            String weatherDataLine = "";
+
+            while ((weatherDataLine = weatherDataRead.readLine()) != null) {
+                weatherDataStringBuilder.append(weatherDataLine);
+                weatherDataJson += weatherDataLine;
             }
 
-            // ************** //
-            JSONObject JSONObject_openWeatherAPIResponse = new JSONObject(json);
+            JSONObject JSONObject_weatherDataAPIResponse = new JSONObject(weatherDataJson);
 
-            double lon = JSONObject_openWeatherAPIResponse.getDouble("lon");
-            double lat = JSONObject_openWeatherAPIResponse.getDouble("lat");
-            String timezone = JSONObject_openWeatherAPIResponse.getString("timezone");
-            System.out.println("timezone: " + timezone);
-            int timezone_offset = JSONObject_openWeatherAPIResponse.getInt("timezone_offset");
-            System.out.println("timezone_offset: " + timezone_offset);
+            String cityname_weatherDataAPI = JSONObject_weatherDataAPIResponse.getString("name");
+
+            System.out.println("cityname value returned from Weather Data API: " + cityname_weatherDataAPI);
+
 
             // *********************************************************************************************************
             // *********************************************************************************************************
@@ -120,7 +146,7 @@ public class GreetingController {
             // *********************************************************************************************************
             // *********************************************************************************************************
 
-            JSONObject JSONObject_current = JSONObject_openWeatherAPIResponse.getJSONObject("current");
+            JSONObject JSONObject_current = JSONObject_oneCallAPIResponse.getJSONObject("current");
 
 
             int current_dt = JSONObject_current.getInt("dt");
@@ -178,7 +204,7 @@ public class GreetingController {
             // *********************************************************************************************************
 
 
-            JSONArray JSONArray_hourly = JSONObject_openWeatherAPIResponse.getJSONArray("hourly");
+            JSONArray JSONArray_hourly = JSONObject_oneCallAPIResponse.getJSONArray("hourly");
             // The whole hourly array is passed to the JSONArray, JSONArray_hourly, in the above line.
 
             int[] hourly_dt = new int[numOfHours];
@@ -244,7 +270,7 @@ public class GreetingController {
             // *********************************************************************************************************
 
 
-            JSONArray JSONArray_daily = JSONObject_openWeatherAPIResponse.getJSONArray("daily");
+            JSONArray JSONArray_daily = JSONObject_oneCallAPIResponse.getJSONArray("daily");
             // The whole daily array is passed to the JSONArray, JSONArray_hourly, in the above line.
 
             int[] daily_dt = new int[numOfDays];
@@ -366,6 +392,9 @@ public class GreetingController {
             returnPage.addObject("lon", lon);
             returnPage.addObject("timezone", timezone);
             returnPage.addObject("timezone_offset", timezone_offset);
+
+            // City name from Weather Data API call
+            returnPage.addObject("cityname", cityname_weatherDataAPI);
 
             // Current
             returnPage.addObject("current_dt", current_dt);
