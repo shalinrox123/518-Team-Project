@@ -5,3 +5,4 @@
   * If it does lead to an error, go to the previous page and pick another city 
 * The sources that we used for our modules are in our indivual folders.
   * Some of us have them as sources.txt and some of us cited the API's in the code
+* There is a file called .DS_Store that is in the repository a few times. Thats because some of us are mac users and thats a hidden file. Just watch out for that, it might not allow the file ti run. Delete it if it causes any issues
