@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457 399">
+  <defs>
+    <style>
+      .a {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <title>whetherwheel</title>
+  <ellipse class="a" cx="228.5" cy="199.5" rx="228" ry="199"/>
+  <ellipse class="a" cx="228.5" cy="182.5" rx="223" ry="182"/>
+  <ellipse class="a" cx="223.5" cy="185.5" rx="141" ry="122"/>
+  <ellipse class="a" cx="223" cy="199.5" rx="136.5" ry="108"/>
+  <g>
+    <ellipse class="a" cx="231.5" cy="342" rx="16" ry="11.5"/>
+    <ellipse class="a" cx="186" cy="336" rx="15.5" ry="12.5"/>
+    <ellipse class="a" cx="148.5" cy="325.5" rx="13" ry="11"/>
+    <ellipse class="a" cx="115" cy="307.5" rx="14.5" ry="12"/>
+    <ellipse class="a" cx="85.5" cy="279.5" rx="15" ry="11"/>
+    <ellipse class="a" cx="59" cy="245" rx="16.5" ry="11.5"/>
+    <ellipse class="a" cx="45.5" cy="203" rx="17" ry="12.5"/>
+    <ellipse class="a" cx="48" cy="163" rx="14.5" ry="11.5"/>
+    <ellipse class="a" cx="67" cy="126.5" rx="15.5" ry="11"/>
+    <ellipse class="a" cx="91" cy="89" rx="15.5" ry="10.5"/>
+    <ellipse class="a" cx="127.5" cy="59" rx="16" ry="11.5"/>
+    <ellipse class="a" cx="175.5" cy="43" rx="14" ry="9.5"/>
+    <ellipse class="a" cx="223.5" cy="36" rx="16" ry="11.5"/>
+    <ellipse class="a" cx="273" cy="41" rx="14.5" ry="11.5"/>
+    <ellipse class="a" cx="315" cy="57" rx="14.5" ry="9.5"/>
+    <ellipse class="a" cx="352" cy="80" rx="12.5" ry="9.5"/>
+    <ellipse class="a" cx="378.5" cy="101.5" rx="14" ry="10"/>
+    <ellipse class="a" cx="392.5" cy="137.5" rx="14" ry="11"/>
+    <ellipse class="a" cx="407.5" cy="179" rx="15" ry="11.5"/>
+    <ellipse class="a" cx="401.5" cy="215" rx="15" ry="11.5"/>
+    <ellipse class="a" cx="383" cy="245" rx="14.5" ry="11.5"/>
+    <ellipse class="a" cx="363" cy="277.5" rx="15.5" ry="13"/>
+    <ellipse class="a" cx="329" cy="307" rx="14.5" ry="11.5"/>
+    <ellipse class="a" cx="286.5" cy="331" rx="14" ry="11.5"/>
+  </g>
+</svg>
