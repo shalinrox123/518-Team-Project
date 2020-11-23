@@ -1,0 +1,9 @@
+
+These are the APIs that I used in my code:
+
+Atlas - https://github.com/bkiers/atlas
+	this is for the offline reverse geolocation given latlong
+ThymeLeaf - https://www.thymeleaf.org
+	this is to send information between java and javascript
+OpenWeather - https://openweathermap.org
+	this is for the geolocation given the city name
