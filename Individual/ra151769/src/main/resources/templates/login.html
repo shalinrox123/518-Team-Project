@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/css/style_1.css">
+</head>
+<body>
+    <div class = 'center'>
+        <h1>Sign In</h1>
+        <form th:action = "@{/login}" method = 'post'>
+
+            <div th:if = "${param.error}">
+                <div class = "alert alert-danger" style = "text-align: center;">
+                    Invalid username or password!
+                </div>
+            </div>
+
+            <div th:if = "${param.resetPassword}">
+                <div class = "alert alert-info" style = "text-align: center;">
+                    Password has been succesfully reset!
+                </div>
+            </div>
+
+            <div th:if = "${param.passwordReset}">
+                <div class = "alert alert-info" style = "text-align: center;">
+                    Password has been succesfully reset!
+                </div>
+            </div>
+
+            <div th:if = "${param.logout}">
+                <div class = "alert alert-info" style = "text-align: center;">
+                    You have been logged out!
+                </div>
+            </div>
+
+            <div class = 'txt_field'>
+                <input type="text" name="username" required>
+                <span></span>
+                <label>Username</label>
+            </div>
+
+            <div class = 'txt_field'>
+                <input type="password" name="password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+
+            <!-- <div class = 'pass'>
+                <a href="/registration" th:href = "@{/resetPassword}">Forgot Password?</a>
+            </div> -->
+
+            <div class = 'password'>
+                <a th:href = "@{/resetPassword}">Forgot Password?</a>
+            </div>
+            
+            <form action="">
+                <input type="submit" value="Login">
+            </form>
+
+            <div class="signup_link">
+                Don't have an account? <a href="/" th:href = "@{/registration}">Sign Up</a>
+            </div>
+
+            <div class="signup_link">
+                <a th:href = "@{/index}">Go back to Home</a>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

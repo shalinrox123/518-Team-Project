@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/style_1.css">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<script>
+        var x=document.getElementById("demo");
+
+        function getLocation()
+         {
+	        if (navigator.geolocation)
+	        	navigator.geolocation.getCurrentPosition(showPosition);
+	        else
+	        	x.innerHTML="Geolocation is not supported by this browser.";
+	     }
+
+        function showPosition(position)
+        {
+        	document.getElementById("demo").innerHTML="Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+            location.href = "/location/" + position.coords.latitude + "," + position.coords.longitude;
+        }
+
+        getLocation()
+</script>
+
+
+<body>
+    <div class = lat>
+        <p id="demo" text-a>Getting Users Location...</p>
+    </div>
+    
+    <!-- <h1>In index.HTML</h1>
+
+    <p id="demo">Getting Users Location...</p>
+    <p>test</p> -->
+</body>
+</html>

@@ -1,0 +1,19 @@
+I am listing all the sources that I have used for the user auth.
+
+I haven't included them in the actual code so I made a sperate txt file.
+
+
+
+User Auth
+-----------
+https://www.baeldung.com/spring-security-login
+https://github.com/RameshMF/registration-login-spring-boot-security-thymeleaf-hibernate
+https://spring.io/guides/gs/securing-web/
+https://howtodoinjava.com/spring5/security/login-form-example/
+https://www.javadevjournal.com/spring-security/spring-security-login/
+
+
+Login UI
+-----------
+https://www.youtube.com/watch?v=eeHqZeJ9Vqc (Can't find the source code)
+https://www.codingnepalweb.com/2020/08/login-form-with-floating-label-animation.html

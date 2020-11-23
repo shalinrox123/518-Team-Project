@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather</h1>
+
+        <div sec:authorize="isAuthenticated()">
+            Authenticated as <span sec:authentication="name"></span>
+
+            <h1 sec:authentication="name"></h1>
+
+            <form action="http://ec2-18-222-137-146.us-east-2.compute.amazonaws.com:8080/">
+                <input type="submit" value = "Go to Chat">
+            </form>
+
+            <input type="button" value="Open a Popup Window" onclick="window.open('http://ec2-18-222-137-146.us-east-2.compute.amazonaws.com:8080/','popUpWindow','height=500,width=400,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');">
+        </div>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+            
+        <form th:action="@{/logout}">
+            <input type="submit" value = "Logout">
+        </form>
+    </div>
+</body>
+</html>

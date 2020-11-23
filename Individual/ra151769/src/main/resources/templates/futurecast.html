@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Weather Website</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/Liquid.css">
+    <link rel="stylesheet" href="/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/css/Accordion.css">
+    <link rel="stylesheet" href="/css/odometer-theme-digital.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+<nav class="navbar navbar-dark navbar-expand-md bg-info shadow">
+    <div class="container"><a class="navbar-brand" href="index.html">Whether?</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+             id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link active" th:href="@{/index_1}">Log In&nbsp;<i class="fa fa-arrow-circle-o-right"></i></a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/registration}">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-center"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+
+        <div class="col" style="padding: 0px;padding-right: 0px;margin: 0px;">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="height: 48px;font-size: 28px;" th:text="${hourly_dt_adjusted_hour0}"></h4><img src="/img/03d.png" style="width: 77px;">
+                    <p style="height: 30px;text-align: center;" th:text="${hourly_weather_description0}"></p>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;margin: 0px;text-align: right;">
+                            <p th:text="${hourly_temp0}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: left;">F&nbsp;&nbsp;<i class="fa fa-thermometer-3"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_pop_adjusted0}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="fas fa-cloud-showers-heavy"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_wind_speed0}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 34px;text-align: left;">m&nbsp;<i class="fas fa-wind"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_clouds0} - 1"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="la la-cloud"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col" style="padding: 0px;padding-right: 0px;margin: 0px;">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="height: 48px;font-size: 28px;" th:text="${hourly_dt_adjusted_hour1}"></h4><img src="/img/03d.png" style="width: 77px;">
+                    <p style="height: 30px;text-align: center;" th:text="${hourly_weather_description1}"></p>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;margin: 0px;text-align: right;">
+                            <p th:text="${hourly_temp1}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: left;">F&nbsp;&nbsp;<i class="fa fa-thermometer-3"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_pop_adjusted1}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="fas fa-cloud-showers-heavy"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_wind_speed1}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">m&nbsp;<i class="fas fa-wind"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_clouds1} - 1"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="la la-cloud"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col" style="padding: 0px;padding-right: 0px;margin: 0px;">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="height: 48px;font-size: 28px;" th:text="${hourly_dt_adjusted_hour2}"></h4><img src="/img/03d.png" style="width: 77px;">
+                    <p style="height: 30px;text-align: center;" th:text="${hourly_weather_description2}"></p>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;margin: 0px;text-align: right;">
+                            <p th:text="${hourly_temp2}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: left;">F&nbsp;&nbsp;<i class="fa fa-thermometer-3"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_pop_adjusted2}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="fas fa-cloud-showers-heavy"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_wind_speed2}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 34px;text-align: left;">m&nbsp;<i class="fas fa-wind"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_clouds2} - 1"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="la la-cloud"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col" style="padding: 0px;padding-right: 0px;margin: 0px;">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="height: 48px;font-size: 28px;" th:text="${hourly_dt_adjusted_hour3}"></h4><img src="/img/03d.png" style="width: 77px;">
+                    <p style="height: 30px;text-align: center;" th:text="${hourly_weather_description3}"></p>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;margin: 0px;text-align: right;">
+                            <p th:text="${hourly_temp3}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: left;">F&nbsp;&nbsp;<i class="fa fa-thermometer-3"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_pop_adjusted3}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="fas fa-cloud-showers-heavy"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_wind_speed3}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 34px;text-align: left;">m&nbsp;<i class="fas fa-wind"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_clouds3} - 1"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="la la-cloud"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col" style="padding: 0px;padding-right: 0px;margin: 0px;">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="height: 48px;font-size: 28px;" th:text="${hourly_dt_adjusted_hour4}"></h4><img src="/img/03d.png" style="width: 77px;">
+                    <p style="height: 30px;text-align: center;" th:text="${hourly_weather_description4}"></p>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;margin: 0px;text-align: right;">
+                            <p th:text="${hourly_temp4}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: left;">F&nbsp;&nbsp;<i class="fa fa-thermometer-3"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_pop_adjusted4}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="fas fa-cloud-showers-heavy"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_wind_speed4}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 34px;text-align: left;">m&nbsp;<i class="fas fa-wind"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_clouds4} - 1"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="la la-cloud"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col" style="padding: 0px;padding-right: 0px;margin: 0px;">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="height: 48px;font-size: 28px;" th:text="${hourly_dt_adjusted_hour5}"></h4><img src="/img/03d.png" style="width: 77px;">
+                    <p style="height: 30px;text-align: center;" th:text="${hourly_weather_description5}"></p>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;margin: 0px;text-align: right;">
+                            <p th:text="${hourly_temp5}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: left;">F&nbsp;&nbsp;<i class="fa fa-thermometer-3"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_pop_adjusted5}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="fas fa-cloud-showers-heavy"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_wind_speed5}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 34px;text-align: left;">m&nbsp;<i class="fas fa-wind"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_clouds5} - 1"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="la la-cloud"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col" style="padding: 0px;padding-right: 0px;margin: 0px;">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="height: 48px;font-size: 28px;" th:text="${hourly_dt_adjusted_hour6}"></h4><img src="/img/03d.png" style="width: 77px;">
+                    <p style="height: 30px;text-align: center;" th:text="${hourly_weather_description6}"></p>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;margin: 0px;text-align: right;">
+                            <p th:text="${hourly_temp6}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: left;">F&nbsp;&nbsp;<i class="fa fa-thermometer-3"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_pop_adjusted6}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="fas fa-cloud-showers-heavy"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_wind_speed6}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 34px;text-align: left;">m&nbsp;<i class="fas fa-wind"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_clouds6} - 1"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="la la-cloud"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col" style="padding: 0px;padding-right: 0px;margin: 0px;">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="height: 48px;font-size: 28px;" th:text="${hourly_dt_adjusted_hour7}"></h4><img src="/img/03d.png" style="width: 77px;">
+                    <p style="height: 30px;text-align: center;" th:text="${hourly_weather_description7}"></p>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;margin: 0px;text-align: right;">
+                            <p th:text="${hourly_temp7}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="text-align: left;">F&nbsp;&nbsp;<i class="fa fa-thermometer-3"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_pop_adjusted7}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="fas fa-cloud-showers-heavy"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_wind_speed7}"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 34px;text-align: left;">m&nbsp;<i class="fas fa-wind"></i></p>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 121px;">
+                        <div class="col" style="width: 92px;">
+                            <p style="text-align: right;" th:text="${hourly_clouds7} - 1"></p>
+                        </div>
+                        <div class="col">
+                            <p style="width: 35px;text-align: left;">%&nbsp;<i class="la la-cloud"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div role="tablist" id="accordion-1">
+        <div class="card">
+            <div class="card-header" role="tab">
+                <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" th:text="${daily_dt_adjusted_daydate0}"></a></h5>
+            </div>
+            <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                <div class="card-body">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>DAY</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_day0}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01d.png"></div>
+                                </div>
+                                <p th:text="${daily_weather_description0}"></p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunrise:</th>
+                                            <th th:text="${daily_sunrise_adjusted_hour0}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels Like (D):</td>
+                                            <td th:text="${daily_feels_like_day0}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cloud Cover:</td>
+                                            <td th:text="${daily_clouds0}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Speeds:</td>
+                                            <td th:text="${daily_wind_speed0}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity:</td>
+                                            <td th:text="${daily_humidity0}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (D):</td>
+                                            <td th:text="${daily_uvi0}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>NIGHT</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_night0}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01n.png"></div>
+                                </div>
+                                <p>&nbsp; &nbsp;&nbsp;</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunset:</th>
+                                            <th th:text="${daily_sunset_adjusted_hour0}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels like (N):</td>
+                                            <td th:text="${daily_feels_like_night0}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chance of Rain:</td>
+                                            <td th:text="${daily_pop_adjusted0}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dew Point:</td>
+                                            <td th:text="${daily_dew_point0}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Direction:</td>
+                                            <td th:text="${daily_wind_deg0}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (N):</td>
+                                            <td>0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" role="tab">
+                <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" th:text="${daily_dt_adjusted_daydate1}"></a></h5>
+            </div>
+            <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                <div class="card-body">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>DAY</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_day1}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01d.png"></div>
+                                </div>
+                                <p th:text="${daily_weather_description1}"></p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunrise:</th>
+                                            <th th:text="${daily_sunrise_adjusted_hour1}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels Like (D):</td>
+                                            <td th:text="${daily_feels_like_day1}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cloud Cover:</td>
+                                            <td th:text="${daily_clouds1}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Speeds:</td>
+                                            <td th:text="${daily_wind_speed1}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity:</td>
+                                            <td th:text="${daily_humidity1}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (D):</td>
+                                            <td th:text="${daily_uvi1}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>NIGHT</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_night1}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01n.png"></div>
+                                </div>
+                                <p>&nbsp; &nbsp;&nbsp;</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunset:</th>
+                                            <th th:text="${daily_sunset_adjusted_hour1}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels like (N):</td>
+                                            <td th:text="${daily_feels_like_night1}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chance of Rain:</td>
+                                            <td th:text="${daily_pop_adjusted1}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dew Point:</td>
+                                            <td th:text="${daily_dew_point1}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Direction:</td>
+                                            <td th:text="${daily_wind_deg1}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (N):</td>
+                                            <td>0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" role="tab">
+                <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" th:text="${daily_dt_adjusted_daydate2}"></a></h5>
+            </div>
+            <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                <div class="card-body">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>DAY</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_day2}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01d.png"></div>
+                                </div>
+                                <p th:text="${daily_weather_description2}"></p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunrise:</th>
+                                            <th th:text="${daily_sunrise_adjusted_hour2}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels Like (D):</td>
+                                            <td th:text="${daily_feels_like_day2}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cloud Cover:</td>
+                                            <td th:text="${daily_clouds2}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Speeds:</td>
+                                            <td th:text="${daily_wind_speed2}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity:</td>
+                                            <td th:text="${daily_humidity2}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (D):</td>
+                                            <td th:text="${daily_uvi2}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>NIGHT</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_night2}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01n.png"></div>
+                                </div>
+                                <p>&nbsp; &nbsp;&nbsp;</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunset:</th>
+                                            <th th:text="${daily_sunset_adjusted_hour2}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels like (N):</td>
+                                            <td th:text="${daily_feels_like_night2}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chance of Rain:</td>
+                                            <td th:text="${daily_pop_adjusted2}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dew Point:</td>
+                                            <td th:text="${daily_dew_point2}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Direction:</td>
+                                            <td th:text="${daily_wind_deg2}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (N):</td>
+                                            <td>0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" role="tab">
+                <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" th:text="${daily_dt_adjusted_daydate3}"></a></h5>
+            </div>
+            <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                <div class="card-body">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>DAY</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_day3}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01d.png"></div>
+                                </div>
+                                <p th:text="${daily_weather_description3}"></p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunrise:</th>
+                                            <th th:text="${daily_sunrise_adjusted_hour3}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels Like (D):</td>
+                                            <td th:text="${daily_feels_like_day3}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cloud Cover:</td>
+                                            <td th:text="${daily_clouds3}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Speeds:</td>
+                                            <td th:text="${daily_wind_speed3}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity:</td>
+                                            <td th:text="${daily_humidity3}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (D):</td>
+                                            <td th:text="${daily_uvi3}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>NIGHT</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_night3}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01n.png"></div>
+                                </div>
+                                <p>&nbsp; &nbsp;&nbsp;</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunset:</th>
+                                            <th th:text="${daily_sunset_adjusted_hour3}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels like (N):</td>
+                                            <td th:text="${daily_feels_like_night3}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chance of Rain:</td>
+                                            <td th:text="${daily_pop_adjusted3}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dew Point:</td>
+                                            <td th:text="${daily_dew_point3}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Direction:</td>
+                                            <td th:text="${daily_wind_deg3}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (N):</td>
+                                            <td>0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" role="tab">
+                <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" th:text="${daily_dt_adjusted_daydate4}"></a></h5>
+            </div>
+            <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                <div class="card-body">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>DAY</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_day4}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01d.png"></div>
+                                </div>
+                                <p th:text="${daily_weather_description4}"></p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunrise:</th>
+                                            <th th:text="${daily_sunrise_adjusted_hour4}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels Like (D):</td>
+                                            <td th:text="${daily_feels_like_day4}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cloud Cover:</td>
+                                            <td th:text="${daily_clouds4}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Speeds:</td>
+                                            <td th:text="${daily_wind_speed4}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity:</td>
+                                            <td th:text="${daily_humidity4}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (D):</td>
+                                            <td th:text="${daily_uvi4}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>NIGHT</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_night4}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01n.png"></div>
+                                </div>
+                                <p>&nbsp; &nbsp;&nbsp;</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunset:</th>
+                                            <th th:text="${daily_sunset_adjusted_hour4}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels like (N):</td>
+                                            <td th:text="${daily_feels_like_night4}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chance of Rain:</td>
+                                            <td th:text="${daily_pop_adjusted4}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dew Point:</td>
+                                            <td th:text="${daily_dew_point4}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Direction:</td>
+                                            <td th:text="${daily_wind_deg4}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (N):</td>
+                                            <td>0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" role="tab">
+                <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" th:text="${daily_dt_adjusted_daydate5}"></a></h5>
+            </div>
+            <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                <div class="card-body">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>DAY</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_day5}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01d.png"></div>
+                                </div>
+                                <p th:text="${daily_weather_description5}"></p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunrise:</th>
+                                            <th th:text="${daily_sunrise_adjusted_hour5}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels Like (D):</td>
+                                            <td th:text="${daily_feels_like_day5}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cloud Cover:</td>
+                                            <td th:text="${daily_clouds5}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Speeds:</td>
+                                            <td th:text="${daily_wind_speed5}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity:</td>
+                                            <td th:text="${daily_humidity5}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (D):</td>
+                                            <td th:text="${daily_uvi5}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>NIGHT</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_night5}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01n.png"></div>
+                                </div>
+                                <p>&nbsp; &nbsp;&nbsp;</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunset:</th>
+                                            <th th:text="${daily_sunset_adjusted_hour5}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels like (N):</td>
+                                            <td th:text="${daily_feels_like_night5}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chance of Rain:</td>
+                                            <td th:text="${daily_pop_adjusted5}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dew Point:</td>
+                                            <td th:text="${daily_dew_point5}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Direction:</td>
+                                            <td th:text="${daily_wind_deg5}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (N):</td>
+                                            <td>0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" role="tab">
+                <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" th:text="${daily_dt_adjusted_daydate6}"></a></h5>
+            </div>
+            <div class="collapse show item-1" role="tabpanel" data-parent="#accordion-1">
+                <div class="card-body">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>DAY</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_day6}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01d.png"></div>
+                                </div>
+                                <p th:text="${daily_weather_description6}"></p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunrise:</th>
+                                            <th th:text="${daily_sunrise_adjusted_hour6}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels Like (D):</td>
+                                            <td th:text="${daily_feels_like_day6}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cloud Cover:</td>
+                                            <td th:text="${daily_clouds6}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Speeds:</td>
+                                            <td th:text="${daily_wind_speed6}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Humidity:</td>
+                                            <td th:text="${daily_humidity6}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (D):</td>
+                                            <td th:text="${daily_uvi6}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>NIGHT</p>
+                                    </div>
+                                    <div class="col">
+                                        <h1 th:text="${daily_temp_night6}"></h1>
+                                    </div>
+                                    <div class="col"><img src="/img/01n.png"></div>
+                                </div>
+                                <p>&nbsp; &nbsp;&nbsp;</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Sunset:</th>
+                                            <th th:text="${daily_sunset_adjusted_hour6}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Feels like (N):</td>
+                                            <td th:text="${daily_feels_like_night6}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Chance of Rain:</td>
+                                            <td th:text="${daily_pop_adjusted6}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dew Point:</td>
+                                            <td th:text="${daily_dew_point6}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Wind Direction:</td>
+                                            <td th:text="${daily_wind_deg6}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ultraviolet Index (N):</td>
+                                            <td>0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

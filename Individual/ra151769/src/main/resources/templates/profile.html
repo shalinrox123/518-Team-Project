@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="/css/style_1.css">
+</head>
+<body>
+    <div class = 'center'>
+        <h1>Profile</h1>
+        <h3 style="text-align: center;" sec:authentication="name"></h3>
+
+        <div sec:authorize="isAuthenticated()">
+            
+            <form th:action="@{/logout}">
+                <input type="submit" value = "Logout">
+            </form>
+
+            <div class="signup_link"></div>
+        </div>
+    </div>
+</body>
+</html>
