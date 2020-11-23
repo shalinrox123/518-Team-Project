@@ -8,6 +8,9 @@
 1. In the input box, enter http://ec2-3-91-233-85.compute-1.amazonaws.com:8080/
 1. Then click on the drop down menu and change it to Enable
 1. Click on "relaunch" 
+1. Go to the URL (http://ec2-3-91-233-85.compute-1.amazonaws.com:8080) 
+1. Allow User location
+1. Refresh the page
 
 ## Important information
 * The location program only works with Chrome
